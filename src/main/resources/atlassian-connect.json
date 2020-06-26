@@ -1,0 +1,39 @@
+{
+  "name": "Ticket Linter",
+  "description": "Ticket Linter is a tool that analyzes your Jira tickets to flag potential errors",
+  "key": "me.mprieto.covidio.linter",
+  "baseUrl": "https://covidio.ngrok.io",
+  "vendor": {
+    "name": "Miguel Prieto",
+    "url": "https://mprieto.me"
+  },
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed",
+    "uninstalled": "/uninstalled",
+    "enabled": "/enabled",
+    "disabled": "/disabled"
+  },
+  "scopes": ["read", "write"],
+  "apiVersion": 1,
+  "modules": {
+    "generalPages": [
+      {
+        "url": "/dashboard",
+        "key": "linter",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "Story Linter"
+        },
+        "conditions" : [ {
+          "condition":  "user_is_logged_in"
+        } ]
+      }
+    ]
+  },
+  "apiMigrations": {
+    "gdpr": true
+  }
+}

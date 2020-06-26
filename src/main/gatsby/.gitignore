@@ -1,0 +1,4 @@
+# NPM Project & Gatsby
+node_modules/**
+public/**
+.cache/**

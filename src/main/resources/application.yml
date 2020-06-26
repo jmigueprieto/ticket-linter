@@ -1,0 +1,15 @@
+spring:
+  # Static resources reloading during development
+  resources:
+    static-locations: file:src/main/resources/public/
+    cache:
+      period: 0
+
+logging:
+  level:
+    me.mprieto: DEBUG
+
+
+atlassian:
+  connect:
+    jwtExpirationTime: 1800
