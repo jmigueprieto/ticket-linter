@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class ProjectController(private val log: Logger,
                         private val atlassianService: JiraCloudService) {
 
-    @GetMapping("/projects")
+    @GetMapping("/linter/api/projects")
     fun projects(@AuthenticationPrincipal user: AtlassianHostUser): ResponseEntity<List<Any>> {
         log.debug("Listing projects for '{}'", user.host.baseUrl)
         val projects = atlassianService.projects()

@@ -11,17 +11,17 @@
     "type": "jwt"
   },
   "lifecycle": {
-    "installed": "/installed",
-    "uninstalled": "/uninstalled",
-    "enabled": "/enabled",
-    "disabled": "/disabled"
+    "installed": "/linter/api/installed",
+    "uninstalled": "/linter/api/uninstalled",
+    "enabled": "/linter/api/enabled",
+    "disabled": "/linter/api/disabled"
   },
   "scopes": ["read", "write"],
-  "apiVersion": 1,
+  "apiVersion": 2,
   "modules": {
     "generalPages": [
       {
-        "url": "/dashboard",
+        "url": "/projects",
         "key": "linter",
         "location": "system.top.navigation.bar",
         "name": {

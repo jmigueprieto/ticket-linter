@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service
 class UserStoryValidator(val log: Logger) : Validator {
 
     // https://stackoverflow.com/questions/56905603/kotlin-regex-thread-safety
-    private val regexStoryWithBenefit =
-            "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+),? ?(so that|in order to) (?<benefit>.+)?"
+    private val regexStoryWithBenefit = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+),? ?(so that|in order to) (?<benefit>.+)?"
                     .toRegex(setOf(RegexOption.IGNORE_CASE))
 
     private val simpleStory = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+)"

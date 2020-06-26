@@ -9,7 +9,6 @@ logging:
   level:
     me.mprieto: DEBUG
 
-
 atlassian:
   connect:
     jwtExpirationTime: 1800

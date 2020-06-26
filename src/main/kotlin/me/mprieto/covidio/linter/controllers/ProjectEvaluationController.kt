@@ -21,23 +21,7 @@ class ProjectEvaluationController(private val log: Logger,
                                   private val atlassianService: JiraCloudService,
                                   private val userStoryService: ValidatorService) {
 
-    private data class Validation(val isValid: Boolean, val messages: List<String>) {
-        constructor(res: ValidationResult) : this(res.isValid, res.messages)
-    }
-
-    private data class Story(val key: String,
-                             val summary: String,
-                             val description: String,
-                             val url: String,
-                             val validation: Validation)
-
-    private data class Evaluation(val total: Int,
-                                  val timestamp: String,
-                                  val violations: Int,
-                                  val stories: List<Story>)
-
-
-    @GetMapping("/projects/{key}/evaluation")
+    @GetMapping("/linter/api/projects/{key}/evaluation")
     fun evaluation(@AuthenticationPrincipal user: AtlassianHostUser,
                    @PathVariable("key") projectKey: String): ResponseEntity<Any> {
         val host = user.host.baseUrl
@@ -62,5 +46,19 @@ class ProjectEvaluationController(private val log: Logger,
         return ResponseEntity.ok(responseBody)
     }
 
-
 }
+
+private data class Validation(val isValid: Boolean, val messages: List<String>) {
+    constructor(res: ValidationResult) : this(res.isValid, res.messages)
+}
+
+private data class Story(val key: String,
+                         val summary: String,
+                         val description: String,
+                         val url: String,
+                         val validation: Validation)
+
+private data class Evaluation(val total: Int,
+                              val timestamp: String,
+                              val violations: Int,
+                              val stories: List<Story>)
