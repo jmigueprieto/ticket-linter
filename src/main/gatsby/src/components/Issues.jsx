@@ -1,43 +1,7 @@
 import React from "react";
 import DynamicTable from "@atlaskit/dynamic-table";
-import styled from "styled-components";
 import CheckCicleIcon from "@atlaskit/icon/glyph/check-circle";
 import CrossCircleIcon from "@atlaskit/icon/glyph/cross-circle";
-
-const Wrapper = styled.div`
-  min-width: 600px;
-`;
-
-const createHead = (withWidth) => {
-  return {
-    cells: [
-      {
-        key: "key",
-        content: "Story", //TODO this should be a link to the story
-        isSortable: true,
-        shouldTruncate: false,
-        width: 80,
-      },
-      {
-        key: "summary",
-        content: "Summary", //TODO this should be a link to the story
-        width: 200,
-      },
-      {
-        key: "result",
-        content: "Result",
-        isSortable: true,
-        shouldTruncate: false,
-        width: 50,
-      },
-      {
-        key: "messages",
-        shouldTruncate: false,
-        width: 250,
-      },
-    ],
-  };
-};
 
 export default ({ issues, loading }) => {
   const head = createHead();
@@ -85,11 +49,36 @@ export default ({ issues, loading }) => {
     };
   });
 
-  return (
-    <section style={{ margin: "1rem 0 1rem 0" }}>
-      <Wrapper>
-        <DynamicTable head={head} rows={rows} isFixedSize isLoading={loading} />
-      </Wrapper>
-    </section>
-  );
+  return <DynamicTable head={head} rows={rows} isFixedSize isLoading={loading} />;
+};
+
+const createHead = () => {
+  return {
+    cells: [
+      {
+        key: "key",
+        content: "Story", //TODO this should be a link to the story
+        isSortable: true,
+        shouldTruncate: false,
+        width: 80,
+      },
+      {
+        key: "summary",
+        content: "Summary", //TODO this should be a link to the story
+        width: 200,
+      },
+      {
+        key: "result",
+        content: "Result",
+        isSortable: true,
+        shouldTruncate: false,
+        width: 50,
+      },
+      {
+        key: "messages",
+        shouldTruncate: false,
+        width: 250,
+      },
+    ],
+  };
 };

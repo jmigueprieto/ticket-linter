@@ -1,24 +1,13 @@
 import React from "react";
 import DynamicTable from "@atlaskit/dynamic-table";
-import styled from "styled-components";
 import Button from "@atlaskit/button";
 import { Link } from "gatsby";
 
-const Wrapper = styled.div`
-  min-width: 600px;
-`;
-
 export default ({ loading, projects, onEvaluate }) => {
-  const head = createHead(true);
+  const head = createHead();
   const rows = getRows(projects, onEvaluate);
 
-  return (
-    <section style={{ margin: "2rem 0 1rem 0" }}>
-      <Wrapper>
-        <DynamicTable head={head} rows={rows} isFixedSize isLoading={loading} />
-      </Wrapper>
-    </section>
-  );
+  return <DynamicTable head={head} rows={rows} isFixedSize isLoading={loading} />;
 };
 
 function getRows(projects, onEvaluate) {

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Grid, GridColumn } from "@atlaskit/page";
 
-import PageLayout from "../components/PageLayout";
+import Layout from "../components/Layout";
 import Projects from "../components/Projects";
 import { atlassian } from "../libraries/atlassian";
 
+// FIXME link to enforced rules
 export default () => {
+  // Move this to Wrapper
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -13,7 +15,7 @@ export default () => {
   }, []);
 
   return (
-    <PageLayout>
+    <Layout>
       <Grid>
         <GridColumn medium={8}>
           <h1>Project Evaluation</h1>
@@ -67,16 +69,17 @@ export default () => {
           />
         </GridColumn>
       </Grid>
-    </PageLayout>
+    </Layout>
   );
 };
 
+//FIXME externalize host
 async function getProjects(setProjects, setLoading) {
   setLoading(true);
   try {
     const token = await atlassian.AP.context.getToken();
     console.log(`token: ${token}`);
-    const response = await fetch(`http://localhost:8080/projects?jwt=${token}`, {
+    const response = await fetch(`https://covidio.ngrok.io/linter/api/projects?jwt=${token}`, {
       method: "GET",
       mode: "cors",
     });
@@ -93,7 +96,7 @@ async function evaluateProject(key) {
   try {
     const token = await atlassian.AP.context.getToken();
     console.log(`token: ${token}`);
-    const response = await fetch(`http://localhost:8080/projects/${key}/evaluation?jwt=${token}`, {
+    const response = await fetch(`https://covidio.ngrok.io/linter/api/projects/${key}/evaluation?jwt=${token}`, {
       method: "GET",
       mode: "cors",
     });
@@ -106,13 +109,3 @@ async function evaluateProject(key) {
     console.log(`error while getting evaluations of project ${key}`);
   }
 }
-
-// export const query = graphql`
-//   query {
-//     site {
-//       siteMetadata {
-//         title
-//       }
-//     }
-//   }
-// `;

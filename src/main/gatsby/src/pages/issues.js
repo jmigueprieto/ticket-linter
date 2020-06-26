@@ -1,14 +1,14 @@
 import React from "react";
 import { Grid, GridColumn } from "@atlaskit/page";
 
-import PageLayout from "../components/PageLayout";
+import Layout from "../components/Layout";
 import Issues from "../components/Issues";
 import { Link } from "gatsby";
 
 export default ({ location }) => {
   const { project } = location.state || { project: { name: "", issues: [] } };
   return (
-    <PageLayout>
+    <Layout>
       <Grid>
         <GridColumn medium={12}>
           <div style={{ color: "#6b778c", fontWeight: "500", marginBottom: "1rem" }}>
@@ -23,6 +23,6 @@ export default ({ location }) => {
           <Issues issues={project.issues} loading={false} />
         </GridColumn>
       </Grid>
-    </PageLayout>
+    </Layout>
   );
 };
