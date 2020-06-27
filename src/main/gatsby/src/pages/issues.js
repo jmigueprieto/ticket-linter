@@ -5,7 +5,8 @@ import Layout from "../components/Layout";
 import Issues from "../components/Issues";
 import { Link } from "gatsby";
 
-export default ({ location }) => {
+const IssuesPage = ({ location }) => {
+  //https://stackoverflow.com/questions/54402626/gatsby-works-fine-during-development-but-throws-error-during-build
   const { project } = location.state || { project: { name: "", issues: [] } };
   return (
     <Layout>
@@ -26,3 +27,5 @@ export default ({ location }) => {
     </Layout>
   );
 };
+
+export default IssuesPage;

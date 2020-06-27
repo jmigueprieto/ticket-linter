@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import Projects from "../components/Projects";
 
 // FIXME link to enforced rules
-export default ({ loading, projects, onEvaluate }) => {
+const ProjectsPage = ({ loading, projects, onEvaluate }) => {
   return (
     <Layout>
       <Grid>
@@ -50,3 +50,11 @@ export default ({ loading, projects, onEvaluate }) => {
     </Layout>
   );
 };
+
+ProjectsPage.defaultProps = {
+  loading: true,
+  projects: [],
+  onEvaluate: () => {},
+};
+
+export default ProjectsPage;
