@@ -12,15 +12,14 @@ export default ({ loading, projects, onEvaluate }) => {
 
 function getRows(projects, onEvaluate) {
   return projects.map((project, index) => {
-    console.log(project);
     return {
       key: `${index}`,
       cells: [
-        { content: project.name, key: `${index}-0` },
-        { content: project.lastUpdate, key: `${index}-1` },
-        { content: project.total, key: `${index}-2` },
+        { content: project.name, key: project.name },
+        { content: project.lastUpdate, key: project.lastUpdate },
+        { content: project.total, key: project.total },
         {
-          key: `${index}-3`,
+          key: `violations-${index}`,
           content:
             project.violations === "N/A" || project.violations === 0 ? (
               project.violations
@@ -33,16 +32,10 @@ function getRows(projects, onEvaluate) {
             ),
         },
         {
-          key: `${index}-4`,
+          key: `options-${index}`,
           content: (
             <div style={{ textAlign: "right" }}>
-              <Button
-                appearance="primary"
-                style={{ marginRight: "1rem" }}
-                onClick={(e) => {
-                  onEvaluate(project.key);
-                }}
-              >
+              <Button appearance="primary" style={{ marginRight: "1rem" }} onClick={() => onEvaluate(project.key)}>
                 Run Evaluation
               </Button>
             </div>

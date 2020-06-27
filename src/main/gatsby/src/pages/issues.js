@@ -12,7 +12,7 @@ export default ({ location }) => {
       <Grid>
         <GridColumn medium={12}>
           <div style={{ color: "#6b778c", fontWeight: "500", marginBottom: "1rem" }}>
-            <Link style={{ color: "#6b778c" }} to="/dashboard">
+            <Link style={{ color: "#6b778c" }} to="/projects">
               Project Evaluation
             </Link>{" "}
             / {project.name}

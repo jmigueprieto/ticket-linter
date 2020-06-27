@@ -5,7 +5,6 @@ import CrossCircleIcon from "@atlaskit/icon/glyph/cross-circle";
 
 export default ({ issues, loading }) => {
   const head = createHead();
-  console.log(issues);
   const rows = issues.map((issue, index) => {
     return {
       key: `${index}`,
@@ -18,7 +17,7 @@ export default ({ issues, loading }) => {
               </a>
             </>
           ),
-          key: `key-${index}`,
+          key: issue.key,
         },
         { content: issue.summary, key: `${index}-1` },
         {
@@ -37,8 +36,8 @@ export default ({ issues, loading }) => {
           content: (
             <>
               <ul>
-                {issue.validation.messages.map((message) => (
-                  <li>{message}</li>
+                {issue.validation.messages.map((message, index) => (
+                  <li key={index}>{message}</li>
                 ))}
               </ul>
             </>
@@ -57,14 +56,14 @@ const createHead = () => {
     cells: [
       {
         key: "key",
-        content: "Story", //TODO this should be a link to the story
+        content: "Story",
         isSortable: true,
         shouldTruncate: false,
         width: 80,
       },
       {
         key: "summary",
-        content: "Summary", //TODO this should be a link to the story
+        content: "Summary",
         width: 200,
       },
       {
