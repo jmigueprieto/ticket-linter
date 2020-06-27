@@ -36,7 +36,7 @@ function getRows(projects, onEvaluate) {
           content: (
             <div style={{ textAlign: "right" }}>
               <Button appearance="primary" style={{ marginRight: "1rem" }} onClick={() => onEvaluate(project.key)}>
-                Run Evaluation
+                Scan Project
               </Button>
             </div>
           ),

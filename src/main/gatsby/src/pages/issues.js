@@ -14,7 +14,7 @@ const IssuesPage = ({ location }) => {
         <GridColumn medium={12}>
           <div style={{ color: "#6b778c", fontWeight: "500", marginBottom: "1rem" }}>
             <Link style={{ color: "#6b778c" }} to="/projects">
-              Project Evaluation
+              Linter Evaluation
             </Link>{" "}
             / {project.name}
           </div>

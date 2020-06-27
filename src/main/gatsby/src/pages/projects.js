@@ -10,14 +10,12 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
     <Layout>
       <Grid>
         <GridColumn medium={8}>
-          <h1>Project Evaluation</h1>
+          <h1>Story Linter</h1>
           <p>
-            When you run an Evaluation,{" "}
-            <span style={{ fontWeight: "bold" }}>Story Linter goes through all currently open user stories</span> in a
-            project and reports <span style={{ fontWeight: "bold" }}>violations to the enforced rules</span> (e.g.
-            stories that are not expressed as expressed as{" "}
-            <span style={{ fontStyle: "italic" }}>“persona + need + purpose”</span> or don't have an acceptance
-            criteria)
+            A Project Scan <span style={{ fontWeight: "bold" }}>evaluates all currently open user stories</span> in the
+            project and reports <span style={{ fontWeight: "bold" }}>violations to the rules</span> (e.g. stories that
+            are not expressed as expressed as <span style={{ fontStyle: "italic" }}>“persona + need + purpose”</span> or
+            don't have an acceptance criteria)
           </p>
         </GridColumn>
         <GridColumn medium={4}>
@@ -38,13 +36,15 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Examples
+                Examples of well written stories
               </a>
             </li>
           </ul>
         </GridColumn>
         <GridColumn>
-          <Projects projects={projects} loading={loading} onEvaluate={onEvaluate} />
+          <div style={{ marginTop: "2rem" }}>
+            <Projects projects={projects} loading={loading} onEvaluate={onEvaluate} />
+          </div>
         </GridColumn>
       </Grid>
     </Layout>
