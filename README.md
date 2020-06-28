@@ -8,6 +8,13 @@ analyzes source code to identify and report issues, like potential bugs, stylist
 this Jira add-on will analyze your user stories and show warnings or alerts if any story does not follow (an opinionated)
 set of rules or format.
 
+### Screenshots
+
+![Screenshot](./docs/images/screenshot-01.png)
+
+![Screenshot](./docs/images/screenshot-02.png)
+
+
 ## User Story Expected Format
 
 The description of your Jira User Stories should be written following the well-known User Story template (see: [User Stories with Examples and Template](https://www.atlassian.com/agile/project-management/user-stories)) 
