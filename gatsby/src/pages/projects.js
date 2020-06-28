@@ -23,9 +23,11 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
           <ul>
             <li>
               <a
-                href="https://www.atlassian.com/agile/project-management/user-stories"
-                target="_blank"
-                rel="noreferrer"
+                href="#not-yet-imptemented"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert("I'm currently working on this document");
+                }}
               >
                 Enforced rules
               </a>
