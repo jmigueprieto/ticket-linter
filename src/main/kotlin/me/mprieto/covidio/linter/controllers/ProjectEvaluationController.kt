@@ -32,8 +32,8 @@ class ProjectEvaluationController(private val log: Logger,
 
         val stories = page.data.map {
             val key = it.key
-            val summary = it.fields.summary
-            val description = it.fields.descriptionText
+            val summary = it.summary
+            val description = it.descriptionText
             val validationResult = userStoryService.validate(description)
             val url = "$host/browse/$key"
             Story(key, summary, description, url, Validation(validationResult))

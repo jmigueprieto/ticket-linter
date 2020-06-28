@@ -2,6 +2,7 @@ package me.mprieto.covidio.linter.services.atlassian
 
 import com.atlassian.connect.spring.AtlassianHostRestClients
 import me.mprieto.covidio.linter.exceptions.RestClientException
+import me.mprieto.covidio.linter.services.pagination.Page
 import org.slf4j.Logger
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
@@ -33,7 +34,7 @@ class JiraCloudService(private val log: Logger,
 
     //FIXME parameterize jql
     //FIXME sanitize projectKey to avoid injection or use project id which seems to be an integer...?
-    fun issues(projectKey: String, startAt: Int = 0, maxResults: Int = 50): Jira.Page<List<Jira.Issue>> {
+    fun issues(projectKey: String, startAt: Int = 0, maxResults: Int = 50): Page<List<Jira.Issue>> {
         data class RequestBody(val fields: List<String>, val startAt: Int, val maxResults: Int, val jql: String)
 
         val requestBody = RequestBody(
@@ -51,7 +52,7 @@ class JiraCloudService(private val log: Logger,
         }
 
         val search = response.body!!
-        return Jira.Page(data = search.issues, total = search.total)
+        return Page(data = search.issues, total = search.total)
     }
 
 }

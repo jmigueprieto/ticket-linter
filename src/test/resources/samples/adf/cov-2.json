@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "type": "doc",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "Create new database schema according to Wade's feedback"
+        }
+      ]
+    },
+    {
+      "type": "rule"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "text": "This is an example of an awful Story. But it's based on a true story. This is exactly the type of issues I want to red flag with Ticket Linter."
+        }
+      ]
+    }
+  ]
+}

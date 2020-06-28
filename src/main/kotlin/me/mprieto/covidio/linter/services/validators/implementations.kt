@@ -11,16 +11,15 @@ import org.springframework.stereotype.Service
 @Order(1)
 class UserStoryValidator(val log: Logger) : Validator {
 
-    // https://stackoverflow.com/questions/56905603/kotlin-regex-thread-safety
-    private val regexStoryWithBenefit = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+),? ?(so that|in order to) (?<benefit>.+)?"
+    private val regexWithBenefit = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+),? ?(so that|in order to) (?<benefit>.+)?"
                     .toRegex(setOf(RegexOption.IGNORE_CASE))
 
-    private val simpleStory = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+)"
+    private val regexSimple = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+)"
             .toRegex(setOf(RegexOption.IGNORE_CASE))
 
     override fun validate(text: String): ValidationResult {
         log.debug("Analyzing story '{}'", text)
-        val found = regexStoryWithBenefit.find(text) ?: simpleStory.find(text)
+        val found = regexWithBenefit.find(text) ?: regexSimple.find(text)
         if (found == null) {
             log.debug("The following text doesn't seem to contain a properly written user story: '$text'")
             return ValidationResult(false, "Doesn't seem to contain a properly written User Story.")
