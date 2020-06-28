@@ -3,7 +3,7 @@
 "Story Linter" is a Jira Cloud application built with Atlassian Connect. Checkout [this
 video](https://www.youtube.com/watch?v=qzxVBjV5g60) for a quick intro on Atlassian Connect Framework.
 
-As a [linter](https://en.wikipedia.org/wiki/Lint_(software)
+As a [linter](https://en.wikipedia.org/wiki/Lint_(software))
 analyzes source code to identify and report issues, like potential bugs, stylistic errors and suspicious constructs,
 this Jira add-on will analyze your user stories and show warnings or alerts if any story does not follow (an opinionated)
 set of rules or format.
@@ -90,5 +90,11 @@ If Liquibase lock remains stuck (https://stackoverflow.com/questions/15528795/li
 SPRING_PROFILES_ACTIVE=local-myconfig ./gradlew xdome-rest:bootRun
 ```
 
-
 _WORK IN PROGRESS_
+
+### TODO
+1. Go through TODOs and FIXMEs in the code.
+2. Containerize application.
+3. Improve dev documentation.
+4. Improve user documentation e.g. what rules are being enforced.
+5. Add a [web panel](https://developer.atlassian.com/cloud/jira/software/modules/web-panel/) in order to allow a user to see the evaulation of a ticket without running a full scan.
