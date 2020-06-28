@@ -67,11 +67,11 @@ create schema covidio;
 
 - Set an app user user
 ```mysql
-CREATE USER 'linter-app'@'%' IDENTIFIED BY 'xxxxxx';
-GRANT ALL PRIVILEGES ON covidio*.* TO 'linter-app'@'%' WITH GRANT OPTION;
+CREATE USER 'linter-app'@'%' IDENTIFIED BY 'T0P_S3CR3T';
+GRANT ALL PRIVILEGES ON covidio.* TO 'linter-app'@'%' WITH GRANT OPTION;
 ```
 
-- Database connection configuration
+- Datasource configuration e.g. application-local-${profile}.yml:
 ```yaml
 spring:
   jpa:
@@ -84,18 +84,19 @@ spring:
     url: jdbc:mysql://localhost:3306/covidio
     driverClassName: com.mysql.jdbc.Driver
     username: linter-app
-    password: xxxxxx
+    password: T0P_S3CR3T
 ```
-
-The database schema will be created/updated once you run the app.
-
-If Liquibase lock remains stuck (https://stackoverflow.com/questions/15528795/liquibase-lock-reasons)
 
 ### Running the backend
 
 ```bash
-SPRING_PROFILES_ACTIVE=local-myconfig ./gradlew xdome-rest:bootRun
+SPRING_PROFILES_ACTIVE=local-${profile} ./gradlew xdome-rest:bootRun
 ```
+
+The database schema will be created/updated once you run the app.
+
+If Liquibase lock remains stuck: https://stackoverflow.com/questions/15528795/liquibase-lock-reasons.
+
 
 _WORK IN PROGRESS_
 
