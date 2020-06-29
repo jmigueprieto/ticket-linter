@@ -1,20 +1,13 @@
 package me.mprieto.covidio.linter.services.atlassian
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
+import me.mprieto.covidio.linter.services.atlassian.Jira.*
+import me.mprieto.covidio.linter.utils.TestUtils.Companion.MAPPER
 import me.mprieto.covidio.linter.utils.getResourceAsString
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import me.mprieto.covidio.linter.services.atlassian.Jira.Issue
-import me.mprieto.covidio.linter.services.atlassian.Jira.IssueFields
-import me.mprieto.covidio.linter.services.atlassian.Jira.IssueType
-import org.junit.jupiter.api.Assertions.*
 
 class JiraTest {
-
-    private val mapper = ObjectMapper().registerModule(KotlinModule())
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
     private val storyType = IssueType("10001", "Story", "Functionality or a feature expressed as a user goal.")
 
@@ -31,7 +24,7 @@ class JiraTest {
 
     @Test
     fun `when getting the description text from an issue with hello-world sample expect "hello world"`() {
-        val description: ADFNode = mapper.readValue(getResourceAsString("/samples/adf/hello-world.json"))
+        val description: ADFNode = MAPPER.readValue(getResourceAsString("/samples/adf/hello-world.json"))
         val issueFields = IssueFields(storyType, "Greet the world", description)
         val issue = Issue(
                 id = "10000",
@@ -44,7 +37,7 @@ class JiraTest {
 
     @Test
     fun `when parsing a hello-world expect ADFNode to be equal to expected"`() {
-        val helloWorld: ADFNode = mapper.readValue(getResourceAsString("/samples/adf/hello-world.json"))
+        val helloWorld: ADFNode = MAPPER.readValue(getResourceAsString("/samples/adf/hello-world.json"))
         val expected = ADFNode(type = "doc",
                 text = null,
                 content =
@@ -59,7 +52,7 @@ class JiraTest {
 
     @Test
     fun `when parsing issue cov-1 expect all fields to be set correctly"`() {
-        val issue: Issue = mapper.readValue(getResourceAsString("/samples/issues/cov-1.json"))
+        val issue: Issue = MAPPER.readValue(getResourceAsString("/samples/issues/cov-1.json"))
         assertEquals("10000", issue.id)
         assertEquals("https://covidio.atlassian.net/rest/api/3/issue/10000", issue.self)
         assertEquals("COV-1", issue.key)

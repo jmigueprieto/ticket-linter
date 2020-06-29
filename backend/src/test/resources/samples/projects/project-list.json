@@ -1,0 +1,20 @@
+[
+  {
+    "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+    "self": "https://covidio.atlassian.net/rest/api/3/project/10000",
+    "id": "10000",
+    "key": "COV",
+    "name": "Covidio",
+    "avatarUrls": {
+      "48x48": "https://covidio.atlassian.net/secure/projectavatar?pid=10000&avatarId=10405",
+      "24x24": "https://covidio.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10405",
+      "16x16": "https://covidio.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10405",
+      "32x32": "https://covidio.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10405"
+    },
+    "projectTypeKey": "software",
+    "simplified": false,
+    "style": "classic",
+    "isPrivate": false,
+    "properties": {}
+  }
+]

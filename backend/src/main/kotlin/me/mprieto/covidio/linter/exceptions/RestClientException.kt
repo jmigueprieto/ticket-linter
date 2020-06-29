@@ -1,3 +1,6 @@
 package me.mprieto.covidio.linter.exceptions
 
-class RestClientException(msg: String) : LinterException(msg)
+class RestClientException : LinterException {
+    constructor(msg: String) : super(msg)
+    constructor(message: String, cause: Throwable) : super(message, cause)
+}

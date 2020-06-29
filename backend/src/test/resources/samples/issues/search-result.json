@@ -1,0 +1,478 @@
+{
+  "expand": "schema,names",
+  "startAt": 200,
+  "maxResults": 50,
+  "total": 202,
+  "issues": [
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "10001",
+      "self": "https://covidio.atlassian.net/rest/api/3/issue/10001",
+      "key": "COV-2",
+      "fields": {
+        "statuscategorychangedate": "2020-06-13T18:37:12.049-0400",
+        "issuetype": {
+          "self": "https://covidio.atlassian.net/rest/api/3/issuetype/10001",
+          "id": "10001",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://covidio.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+          "name": "Story",
+          "subtask": false,
+          "avatarId": 10315
+        },
+        "timespent": null,
+        "project": {
+          "self": "https://covidio.atlassian.net/rest/api/3/project/10000",
+          "id": "10000",
+          "key": "COV",
+          "name": "Covidio",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://covidio.atlassian.net/secure/projectavatar?pid=10000&avatarId=10405",
+            "24x24": "https://covidio.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10405",
+            "16x16": "https://covidio.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10405",
+            "32x32": "https://covidio.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10405"
+          }
+        },
+        "customfield_10031": null,
+        "customfield_10032": null,
+        "customfield_10033": null,
+        "fixVersions": [],
+        "aggregatetimespent": null,
+        "resolution": null,
+        "customfield_10027": null,
+        "resolutiondate": null,
+        "workratio": -1,
+        "lastViewed": null,
+        "watches": {
+          "self": "https://covidio.atlassian.net/rest/api/3/issue/COV-2/watchers",
+          "watchCount": 1,
+          "isWatching": false
+        },
+        "created": "2020-06-13T18:37:11.922-0400",
+        "customfield_10020": null,
+        "customfield_10021": null,
+        "customfield_10022": null,
+        "customfield_10023": null,
+        "priority": {
+          "self": "https://covidio.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://covidio.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "customfield_10024": null,
+        "customfield_10025": [],
+        "customfield_10026": null,
+        "labels": [],
+        "customfield_10016": null,
+        "customfield_10017": null,
+        "customfield_10018": {
+          "hasEpicLinkFieldDependency": false,
+          "showField": false,
+          "nonEditableReason": {
+            "reason": "PLUGIN_LICENSE_ERROR",
+            "message": "The Parent Link is only available to Jira Premium users."
+          }
+        },
+        "customfield_10019": "0|i00007:",
+        "aggregatetimeoriginalestimate": null,
+        "timeestimate": null,
+        "versions": [],
+        "issuelinks": [],
+        "assignee": null,
+        "updated": "2020-06-13T18:37:11.922-0400",
+        "status": {
+          "self": "https://covidio.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://covidio.atlassian.net/",
+          "name": "Backlog",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://covidio.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "components": [],
+        "timeoriginalestimate": null,
+        "description": {
+          "version": 1,
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Create new database schema according to Wade's feedback"
+                }
+              ]
+            },
+            {
+              "type": "rule"
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "This is an example of an awful ticket. But it's based on a true story. This is exactly the type of issues I want to red flag with Ticket Linter."
+                }
+              ]
+            }
+          ]
+        },
+        "customfield_10010": null,
+        "customfield_10014": null,
+        "customfield_10015": null,
+        "customfield_10005": null,
+        "customfield_10006": null,
+        "customfield_10007": null,
+        "security": null,
+        "customfield_10008": null,
+        "aggregatetimeestimate": null,
+        "customfield_10009": null,
+        "summary": "Database Schema",
+        "creator": {
+          "self": "https://covidio.atlassian.net/rest/api/3/user?accountId=557058%3A6c40792a-2fa3-4415-bf38-351d73211aee",
+          "accountId": "557058:6c40792a-2fa3-4415-bf38-351d73211aee",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "24x24": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "16x16": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "32x32": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png"
+          },
+          "displayName": "Miguel Prieto",
+          "active": true,
+          "timeZone": "America/Asuncion",
+          "accountType": "atlassian"
+        },
+        "subtasks": [],
+        "reporter": {
+          "self": "https://covidio.atlassian.net/rest/api/3/user?accountId=557058%3A6c40792a-2fa3-4415-bf38-351d73211aee",
+          "accountId": "557058:6c40792a-2fa3-4415-bf38-351d73211aee",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "24x24": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "16x16": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "32x32": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png"
+          },
+          "displayName": "Miguel Prieto",
+          "active": true,
+          "timeZone": "America/Asuncion",
+          "accountType": "atlassian"
+        },
+        "aggregateprogress": {
+          "progress": 0,
+          "total": 0
+        },
+        "customfield_10000": "{}",
+        "customfield_10001": null,
+        "customfield_10002": null,
+        "customfield_10003": null,
+        "customfield_10004": null,
+        "environment": null,
+        "duedate": null,
+        "progress": {
+          "progress": 0,
+          "total": 0
+        },
+        "votes": {
+          "self": "https://covidio.atlassian.net/rest/api/3/issue/COV-2/votes",
+          "votes": 0,
+          "hasVoted": false
+        }
+      }
+    },
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+      "id": "10000",
+      "self": "https://covidio.atlassian.net/rest/api/3/issue/10000",
+      "key": "COV-1",
+      "fields": {
+        "statuscategorychangedate": "2020-06-13T18:32:48.292-0400",
+        "issuetype": {
+          "self": "https://covidio.atlassian.net/rest/api/3/issuetype/10001",
+          "id": "10001",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://covidio.atlassian.net/secure/viewavatar?size=medium&avatarId=10315&avatarType=issuetype",
+          "name": "Story",
+          "subtask": false,
+          "avatarId": 10315
+        },
+        "timespent": null,
+        "project": {
+          "self": "https://covidio.atlassian.net/rest/api/3/project/10000",
+          "id": "10000",
+          "key": "COV",
+          "name": "Covidio",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://covidio.atlassian.net/secure/projectavatar?pid=10000&avatarId=10405",
+            "24x24": "https://covidio.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10405",
+            "16x16": "https://covidio.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10405",
+            "32x32": "https://covidio.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10405"
+          }
+        },
+        "customfield_10031": null,
+        "customfield_10032": null,
+        "fixVersions": [],
+        "customfield_10033": null,
+        "aggregatetimespent": null,
+        "resolution": null,
+        "customfield_10027": null,
+        "resolutiondate": null,
+        "workratio": -1,
+        "watches": {
+          "self": "https://covidio.atlassian.net/rest/api/3/issue/COV-1/watchers",
+          "watchCount": 1,
+          "isWatching": false
+        },
+        "lastViewed": null,
+        "created": "2020-06-13T18:32:48.089-0400",
+        "customfield_10020": null,
+        "customfield_10021": null,
+        "customfield_10022": null,
+        "customfield_10023": null,
+        "priority": {
+          "self": "https://covidio.atlassian.net/rest/api/3/priority/3",
+          "iconUrl": "https://covidio.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "customfield_10024": null,
+        "customfield_10025": [],
+        "customfield_10026": null,
+        "labels": [],
+        "customfield_10016": null,
+        "customfield_10017": null,
+        "customfield_10018": {
+          "hasEpicLinkFieldDependency": false,
+          "showField": false,
+          "nonEditableReason": {
+            "reason": "PLUGIN_LICENSE_ERROR",
+            "message": "The Parent Link is only available to Jira Premium users."
+          }
+        },
+        "customfield_10019": "0|hzzzzz:",
+        "timeestimate": null,
+        "aggregatetimeoriginalestimate": null,
+        "versions": [],
+        "issuelinks": [],
+        "assignee": {
+          "self": "https://covidio.atlassian.net/rest/api/3/user?accountId=557058%3A6c40792a-2fa3-4415-bf38-351d73211aee",
+          "accountId": "557058:6c40792a-2fa3-4415-bf38-351d73211aee",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "24x24": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "16x16": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "32x32": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png"
+          },
+          "displayName": "Miguel Prieto",
+          "active": true,
+          "timeZone": "America/Asuncion",
+          "accountType": "atlassian"
+        },
+        "updated": "2020-06-13T18:32:48.089-0400",
+        "status": {
+          "self": "https://covidio.atlassian.net/rest/api/3/status/10000",
+          "description": "",
+          "iconUrl": "https://covidio.atlassian.net/",
+          "name": "Backlog",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://covidio.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "components": [],
+        "timeoriginalestimate": null,
+        "description": {
+          "version": 1,
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "US",
+                  "marks": [
+                    {
+                      "type": "strong"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "As a user I want to see a dashboard so that I can get quick info about ticket quality in my projects"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "AC",
+                  "marks": [
+                    {
+                      "type": "strong"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "User sees a dashboard"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Dashboard shows the number of analyzed tickets, flagged tickets, etc."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "User sees those numbers broken down by project."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "User has the options of viewing more details."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "User has the option to trigger a full project analysis (all tickets are evaluated)."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "customfield_10010": null,
+        "customfield_10014": null,
+        "customfield_10015": null,
+        "customfield_10005": null,
+        "customfield_10006": null,
+        "customfield_10007": null,
+        "security": null,
+        "customfield_10008": null,
+        "aggregatetimeestimate": null,
+        "customfield_10009": null,
+        "summary": "Dashboard",
+        "creator": {
+          "self": "https://covidio.atlassian.net/rest/api/3/user?accountId=557058%3A6c40792a-2fa3-4415-bf38-351d73211aee",
+          "accountId": "557058:6c40792a-2fa3-4415-bf38-351d73211aee",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "24x24": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "16x16": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "32x32": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png"
+          },
+          "displayName": "Miguel Prieto",
+          "active": true,
+          "timeZone": "America/Asuncion",
+          "accountType": "atlassian"
+        },
+        "subtasks": [],
+        "reporter": {
+          "self": "https://covidio.atlassian.net/rest/api/3/user?accountId=557058%3A6c40792a-2fa3-4415-bf38-351d73211aee",
+          "accountId": "557058:6c40792a-2fa3-4415-bf38-351d73211aee",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "24x24": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "16x16": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png",
+            "32x32": "https://secure.gravatar.com/avatar/1d193960e512cee8677f74d6bf8f7559?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-6.png"
+          },
+          "displayName": "Miguel Prieto",
+          "active": true,
+          "timeZone": "America/Asuncion",
+          "accountType": "atlassian"
+        },
+        "customfield_10000": "{}",
+        "aggregateprogress": {
+          "progress": 0,
+          "total": 0
+        },
+        "customfield_10001": null,
+        "customfield_10002": null,
+        "customfield_10003": null,
+        "customfield_10004": null,
+        "environment": null,
+        "duedate": null,
+        "progress": {
+          "progress": 0,
+          "total": 0
+        },
+        "votes": {
+          "self": "https://covidio.atlassian.net/rest/api/3/issue/COV-1/votes",
+          "votes": 0,
+          "hasVoted": false
+        }
+      }
+    }
+  ]
+}
