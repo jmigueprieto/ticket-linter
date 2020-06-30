@@ -1,5 +1,7 @@
 # STORY LINTER
 
+[![Build Status](https://travis-ci.com/jmigueprieto/ticket-linter.svg?branch=master)](https://travis-ci.com/jmigueprieto/ticket-linter)
+
 "Story Linter" is a Jira Cloud application built with Atlassian Connect. Checkout [this
 video](https://www.youtube.com/watch?v=qzxVBjV5g60) for a quick intro on Atlassian Connect Framework.
 
