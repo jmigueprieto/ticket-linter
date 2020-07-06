@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 //TODO Integration Tests
 @RestController
-@CrossOrigin(origins = ["https://covidio.ngrok.io"])
+@CrossOrigin
 class ProjectController(private val log: Logger,
                         private val atlassianService: JiraCloudService) {
 

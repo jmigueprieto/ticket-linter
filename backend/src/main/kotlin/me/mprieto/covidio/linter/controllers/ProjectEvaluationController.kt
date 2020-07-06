@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 
 //TODO Integration Tests
 @RestController
-@CrossOrigin(origins = ["https://covidio.ngrok.io"])
+@CrossOrigin
 class ProjectEvaluationController(private val log: Logger,
                                   private val atlassianService: JiraCloudService,
                                   private val userStoryService: ValidatorService) {
