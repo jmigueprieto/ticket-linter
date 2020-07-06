@@ -1,4 +1,5 @@
 # STORY LINTER
+_WORK IN PROGRESS_...
 
 [![Build Status](https://travis-ci.com/jmigueprieto/ticket-linter.svg?branch=master)](https://travis-ci.com/jmigueprieto/ticket-linter)
 
@@ -92,17 +93,25 @@ spring:
 ### Running the backend
 
 ```bash
-SPRING_PROFILES_ACTIVE=local-${profile} ./gradlew xdome-rest:bootRun
+SPRING_PROFILES_ACTIVE=local-${profile} ./gradlew backend:bootRun
 ```
 
 The database schema will be created/updated once you run the app.
 
 If Liquibase lock remains stuck: https://stackoverflow.com/questions/15528795/liquibase-lock-reasons.
 
+### Building a jar 
 
-_WORK IN PROGRESS_
+To build a jar with the frontend as a static resource, run:
 
-### TODO
+```bash
+./gradlew frontend:build copyFrontend backend:build
+```
+
+This is how the jar that's running in Heroku (https://ticket-linter.herokuapp.com/) is built.
+
+
+## TODO
 1. Go through TODOs and FIXMEs in the code.
 2. Containerize application.
 3. Improve dev documentation.
