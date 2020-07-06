@@ -1,5 +1,0 @@
-spring:
-  # Templates reloading during development
-  thymeleaf:
-    prefix: file:src/main/resources/templates/
-    cache: false

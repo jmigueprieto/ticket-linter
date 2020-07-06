@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { atlassian } from "../libraries/atlassian";
+import { API_BASE_URL } from "../constants";
 
+//TODO move these API request to a Api Client class
 export default ({ children }) => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log("Loading projects");
+    console.log(`Loading projects from ${API_BASE_URL}`);
     getProjects(setProjects, setLoading);
   }, []);
 
@@ -14,7 +16,7 @@ export default ({ children }) => {
     setLoading(true);
     try {
       const token = await atlassian.AP.context.getToken();
-      const response = await fetch(`https://covidio.ngrok.io/linter/api/projects?jwt=${token}`, {
+      const response = await fetch(`${API_BASE_URL}/linter/api/projects?jwt=${token}`, {
         method: "GET",
         mode: "cors",
       });
@@ -42,7 +44,7 @@ export default ({ children }) => {
   async function evaluateProject(key) {
     try {
       const token = await atlassian.AP.context.getToken();
-      const response = await fetch(`https://covidio.ngrok.io/linter/api/projects/${key}/evaluation?jwt=${token}`, {
+      const response = await fetch(`${API_BASE_URL}/linter/api/projects/${key}/evaluation?jwt=${token}`, {
         method: "GET",
         mode: "cors",
       });

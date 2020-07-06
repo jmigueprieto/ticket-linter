@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}/${MYSQL_DATABASE}
+    driverClassName: com.mysql.jdbc.Driver
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    hikari:
+      initialization-fail-timeout: 10000

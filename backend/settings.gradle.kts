@@ -1,1 +1,1 @@
-rootProject.name = "ticket-linter"
+rootProject.name = "ticket-linter-backend"
