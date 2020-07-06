@@ -1,0 +1,12 @@
+zuul:
+  routes:
+    descriptor:
+      path: /
+      url: http://localhost:8001/atlassian-connect.json
+    frontend:
+      path: /**
+      url: http://localhost:8000
+    api:
+      path: /linter/api/**
+      url: http://localhost:8001/linter/api
+
