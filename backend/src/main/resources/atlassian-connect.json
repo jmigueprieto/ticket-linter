@@ -16,7 +16,9 @@
     "enabled": "/linter/api/enabled",
     "disabled": "/linter/api/disabled"
   },
-  "scopes": ["read", "write"],
+  "scopes": [
+    "read"
+  ],
   "apiVersion": 2,
   "modules": {
     "generalPages": [
@@ -27,9 +29,16 @@
         "name": {
           "value": "Story Linter"
         },
-        "conditions" : [ {
-          "condition":  "user_is_logged_in"
-        } ]
+        "icon": {
+          "width": 32,
+          "height": 32,
+          "url": "/images/icon_32.png"
+        },
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
       }
     ]
   },
