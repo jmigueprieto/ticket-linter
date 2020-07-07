@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, GridColumn } from "@atlaskit/page";
 import Layout from "../components/Layout";
 import Projects from "../components/Projects";
-import { Link } from "gatsby";
+import LinksMenu from "../components/LinksMenu";
 
 const ProjectsPage = ({ loading, projects, onEvaluate }) => {
   return (
@@ -10,6 +10,7 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
       <Grid>
         <GridColumn medium={8}>
           <h1>Story Linter</h1>
+          <hr />
           <p>
             A Project Scan <span style={{ fontWeight: "bold" }}>evaluates all currently open user stories</span> in the
             project and reports <span style={{ fontWeight: "bold" }}>violations to the rules</span> (e.g. stories that
@@ -18,21 +19,7 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
           </p>
         </GridColumn>
         <GridColumn medium={4}>
-          <h2>More info</h2>
-          <ul>
-            <li>
-            <Link to="/rules">Enforced Rules</Link>
-            </li>
-            <li>
-              <a
-                href="https://www.atlassian.com/agile/project-management/user-stories"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Examples of well written stories
-              </a>
-            </li>
-          </ul>
+          <LinksMenu/>
         </GridColumn>
         <GridColumn>
           <div style={{ marginTop: "2rem" }}>

@@ -10,6 +10,7 @@
     "@atlaskit/css-reset": "^5.0.12",
     "@atlaskit/dynamic-table": "^13.7.7",
     "@atlaskit/icon": "^20.1.2",
+    "@atlaskit/menu": "^0.5.0",
     "@atlaskit/page": "^11.0.14",
     "@atlaskit/theme": "^9.5.5",
     "gatsby": "^2.23.3",
