@@ -51,19 +51,19 @@ class ProjectEvaluationController(private val log: Logger,
     //TODO move pagination logic to client (Gatsby app). Controller will just return one page at a time.
     private fun getAllProjectIssues(projectKey: String): List<Issue> {
         data class PageCounter(var startAt: Int = 0) {
-            fun next(lastTotal: Int): Boolean {
+            fun next(total: Int): Boolean {
                 startAt += PAGE_SIZE
                 // if the page was full, request the next page
-                return lastTotal == PAGE_SIZE
+                return startAt < total
             }
         }
 
         val counter = PageCounter()
         val issues = mutableListOf<Issue>()
         do {
-            log.debug("Requesting issues from '${counter.startAt}', page size: $PAGE_SIZE")
+            log.debug("Requesting issues from '${counter.startAt}', page size $PAGE_SIZE")
             val page = jiraService.issues(projectKey, counter.startAt, PAGE_SIZE)
-            log.debug("Got '${page.total}' issues from start at '${counter.startAt}'")
+            log.debug("Found '${page.data.size}' issues from start at '${counter.startAt}' with page size '$PAGE_SIZE'")
             issues.addAll(page.data)
         } while (counter.next(page.total))
         return issues

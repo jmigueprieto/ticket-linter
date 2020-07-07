@@ -71,7 +71,7 @@ class ProjectEvaluationControllerIntegrationTest : RestControllerTest() {
         }
 
         verify(jiraService, times(1)).issues("COV", 0, PAGE_SIZE)
-        verify(jiraService, times(1)).issues("COV", PAGE_SIZE, PAGE_SIZE)
+        verify(jiraService, times(1)).issues(anyString(), anyInt(), anyInt())
         verify(validatorService, times(PAGE_SIZE)).validate(anyString())
     }
 
@@ -80,9 +80,9 @@ class ProjectEvaluationControllerIntegrationTest : RestControllerTest() {
     fun returns200_with_pagination_2() {
         val gt = PAGE_SIZE - 5
         whenever(jiraService.issues("COV", 0, PAGE_SIZE))
-                .thenReturn(Page(data = generateListOfIssues(1, PAGE_SIZE), total = PAGE_SIZE))
+                .thenReturn(Page(data = generateListOfIssues(1, PAGE_SIZE), total = PAGE_SIZE + gt))
         whenever(jiraService.issues("COV", PAGE_SIZE, PAGE_SIZE))
-                .thenReturn(Page(data = generateListOfIssues(PAGE_SIZE + 1, PAGE_SIZE + gt), total = gt))
+                .thenReturn(Page(data = generateListOfIssues(PAGE_SIZE + 1, PAGE_SIZE + gt), total = PAGE_SIZE + gt))
         whenever(validatorService.validate(anyString())).thenReturn(ValidationResult(false, "Empty Story"))
 
         mockMvc.get("/linter/api/projects/COV/evaluation?jwt=${token}") {

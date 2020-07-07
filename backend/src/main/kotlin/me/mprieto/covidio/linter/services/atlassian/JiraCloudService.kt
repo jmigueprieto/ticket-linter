@@ -71,7 +71,8 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         }
 
         val search = response.body!!
-        // search.total is the number of results in the page
+        // total is "The number of results on the page." according to the doc
+        // but on the actual response it seems to be the number of issues in the search
         Page(data = search.issues, total = search.total)
     }
 
