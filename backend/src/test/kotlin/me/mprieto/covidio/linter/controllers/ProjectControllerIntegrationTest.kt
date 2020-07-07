@@ -24,7 +24,7 @@ class ProjectControllerIntegrationTest : RestControllerTest() {
     }
 
     @Test
-    @DisplayName("when getting evaluation with valid token expect a 200 - less than page size")
+    @DisplayName("when getting projects with valid token expect a 200")
     fun returns200() {
         val projects = generateListOfProjects()
         whenever(jiraService.projects()).thenReturn(projects)
