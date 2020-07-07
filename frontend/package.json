@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@atlaskit/badge": "^14.0.0",
     "@atlaskit/button": "^13.4.1",
     "@atlaskit/code": "^12.0.0",
     "@atlaskit/css-reset": "^5.0.12",

@@ -10,7 +10,6 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
       <Grid>
         <GridColumn medium={8}>
           <h1>Story Linter</h1>
-          <hr />
           <p>
             A Project Scan <span style={{ fontWeight: "bold" }}>evaluates all currently open user stories</span> in the
             project and reports <span style={{ fontWeight: "bold" }}>violations to the rules</span> (e.g. stories that
