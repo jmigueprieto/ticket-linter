@@ -19,7 +19,7 @@ class ProjectEvaluationController(private val log: Logger,
                                   private val jiraService: JiraCloudService,
                                   private val validatorService: ValidatorService) {
     companion object {
-        const val PAGE_SIZE = 10
+        const val PAGE_SIZE = 50
     }
 
     @GetMapping(value = ["/linter/api/projects/{key}/evaluation"], produces = [MediaType.APPLICATION_JSON_VALUE])
