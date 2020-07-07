@@ -1,49 +1,72 @@
 package me.mprieto.covidio.linter.controllers
 
 import com.atlassian.connect.spring.AtlassianHostUser
+import me.mprieto.covidio.linter.services.atlassian.Jira.*
 import me.mprieto.covidio.linter.services.atlassian.JiraCloudService
 import me.mprieto.covidio.linter.services.validators.ValidationResult
 import me.mprieto.covidio.linter.services.validators.ValidatorService
 import org.slf4j.Logger
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-//TODO Integration Tests
 @RestController
 @CrossOrigin
 class ProjectEvaluationController(private val log: Logger,
-                                  private val atlassianService: JiraCloudService,
-                                  private val userStoryService: ValidatorService) {
+                                  private val jiraService: JiraCloudService,
+                                  private val validatorService: ValidatorService) {
+    companion object {
+        const val PAGE_SIZE = 50
+    }
 
-    @GetMapping("/linter/api/projects/{key}/evaluation")
+    @GetMapping(value = ["/linter/api/projects/{key}/evaluation"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun evaluation(@AuthenticationPrincipal user: AtlassianHostUser,
                    @PathVariable("key") projectKey: String): ResponseEntity<Any> {
         val host = user.host.baseUrl
-        log.debug("Listing issues for '{}'", host)
-        //FIXME Needs pagination
-        val page = atlassianService.issues(projectKey)
-        log.debug("total '{}', found issues: '{}'", page.total, page.data)
+        log.debug("Listing open issues of '{}' in host '{}'", projectKey, host)
 
-        val stories = page.data.map {
+        val data = getAllProjectIssues(projectKey)
+        val total = data.size
+        log.debug("Total issues '{}', found issues: '{}'", total, data)
+
+        val stories = data.map {
             val key = it.key
             val summary = it.summary
             val description = it.descriptionText
-            val validationResult = userStoryService.validate(description)
+            val validationResult = validatorService.validate(description)
             val url = "$host/browse/$key"
             Story(key, summary, description, url, Validation(validationResult))
         }
         val violations = stories.count { !it.validation.isValid }
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 
-        val responseBody = Evaluation(page.total, timestamp, violations, stories)
+        val responseBody = Evaluation(total, timestamp, violations, stories)
 
         return ResponseEntity.ok(responseBody)
+    }
+
+    //TODO move pagination logic to client (Gatsby app). Controller will just return one page at a time.
+    private fun getAllProjectIssues(projectKey: String): List<Issue> {
+        data class PageCounter(var startAt: Int = 0) {
+            fun next(total: Int): Boolean {
+                startAt += PAGE_SIZE
+                // if the page was full, request the next page
+                return startAt < total
+            }
+        }
+
+        val counter = PageCounter()
+        val issues = mutableListOf<Issue>()
+        do {
+            log.debug("Requesting issues from '${counter.startAt}', page size $PAGE_SIZE")
+            val page = jiraService.issues(projectKey, counter.startAt, PAGE_SIZE)
+            log.debug("Found '${page.data.size}' issues from start at '${counter.startAt}' with page size '$PAGE_SIZE'")
+            issues.addAll(page.data)
+        } while (counter.next(page.total))
+        return issues
     }
 
 }

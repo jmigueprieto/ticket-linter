@@ -32,12 +32,13 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     runtimeOnly("mysql:mysql-connector-java")
-    runtimeOnly("com.h2database:h2")
+    //runtimeOnly("com.h2database:h2")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("com.h2database:h2")
+    testImplementation("com.atlassian.connect:atlassian-connect-spring-boot-core:2.0.7")
 }
 
 tasks.withType<Test> {

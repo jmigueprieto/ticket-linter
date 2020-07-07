@@ -9,16 +9,15 @@ import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
-//TODO Integration Tests
 @RestController
 @CrossOrigin
 class ProjectController(private val log: Logger,
-                        private val atlassianService: JiraCloudService) {
+                        private val jiraService: JiraCloudService) {
 
     @GetMapping("/linter/api/projects")
     fun projects(@AuthenticationPrincipal user: AtlassianHostUser): ResponseEntity<List<Any>> {
         log.debug("Listing projects for '{}'", user.host.baseUrl)
-        val projects = atlassianService.projects()
+        val projects = jiraService.projects()
         val responseBody = projects.map {
             mapOf("key" to it.key,
                     "status" to "NONE",

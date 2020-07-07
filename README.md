@@ -111,9 +111,3 @@ To build a jar with the frontend as a static resource, run:
 This is how the jar that's running in Heroku (https://ticket-linter.herokuapp.com/) is built.
 
 
-## TODO
-1. Go through TODOs and FIXMEs in the code.
-2. Containerize application.
-3. Improve dev documentation.
-4. Improve user documentation e.g. what rules are being enforced.
-5. Add a [web panel](https://developer.atlassian.com/cloud/jira/software/modules/web-panel/) in order to allow a user to see the evaulation of a ticket without running a full scan.
