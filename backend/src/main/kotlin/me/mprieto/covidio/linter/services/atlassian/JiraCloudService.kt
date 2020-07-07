@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestClientResponseException
 import org.springframework.web.client.exchange
+import java.lang.IllegalArgumentException
 import java.net.URI
 
 @Service
@@ -19,10 +20,12 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
 
     companion object {
         // https://developer.atlassian.com/cloud/jira/platform/rest/v3/#api-rest-api-3-project-get
-        const val PATH_PROJECT = "/rest/api/3/project"
+        private const val PATH_PROJECT = "/rest/api/3/project"
 
         // https://developer.atlassian.com/cloud/jira/platform/rest/v3/#api-rest-api-3-search-post
-        const val PATH_SEARCH = "/rest/api/3/search"
+        private const val PATH_SEARCH = "/rest/api/3/search"
+
+        private val PROJECT_KEY_REGEX = "[a-zA-Z0-9]{2,10}".toRegex()
     }
 
     /**
@@ -41,15 +44,17 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         response.body!!
     }
 
-    //FIXME sanitize projectKey to avoid injection or use project id which seems to be an integer...?
-    //TODO parameterize jql
     /**
      * Returns a paginated list of unresolved issues with issuetype equal to "Story".
      *
      * @param projectKey the Key of the Jira Project in which to search for tickets
      */
     @Throws(RestClientException::class)
-    fun issues(projectKey: String, startAt: Int = 0, maxResults: Int = 50) = getOrThrowException {
+    fun issues(projectKey: String, startAt: Int, maxResults: Int) = getOrThrowException {
+        if (!projectKey.matches(PROJECT_KEY_REGEX)) {
+            throw IllegalArgumentException("Invalid key '$projectKey'")
+        }
+
         data class RequestBody(val fields: List<String>, val startAt: Int, val maxResults: Int, val jql: String)
 
         val requestBody = RequestBody(
@@ -66,6 +71,7 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         }
 
         val search = response.body!!
+        // search.total is the number of results in the page
         Page(data = search.issues, total = search.total)
     }
 

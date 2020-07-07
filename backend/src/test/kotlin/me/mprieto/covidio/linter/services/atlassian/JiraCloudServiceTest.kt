@@ -23,6 +23,7 @@ import org.springframework.http.RequestEntity
 import org.springframework.http.ResponseEntity
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestTemplate
+import java.lang.IllegalArgumentException
 import java.net.URI
 
 
@@ -95,7 +96,7 @@ class JiraCloudServiceTest {
         whenever(restTemplate.exchange(any(), eq(typeRef<IssueSearch>())))
                 .thenReturn(ResponseEntity.ok(searchResult))
 
-        val page = service.issues("COV")
+        val page = service.issues("COV", 0, 500)
         assertEquals(202, page.total)
         assertEquals(2, page.data.size)
         //TODO more asserts over the returned data
@@ -113,7 +114,7 @@ class JiraCloudServiceTest {
         whenever(restTemplate.exchange(any(), eq(typeRef<IssueSearch>())))
                 .thenThrow(HttpClientErrorException(HttpStatus.UNAUTHORIZED))
 
-        val exception: RestClientException = assertThrows { service.issues("COV") }
+        val exception: RestClientException = assertThrows { service.issues("COV", 0, 50) }
         assertEquals("Error while making a request to Jira. Response status code: '401'", exception.message)
     }
 
@@ -130,7 +131,24 @@ class JiraCloudServiceTest {
         whenever(restTemplate.exchange(any(), eq(typeRef<IssueSearch>())))
                 .thenReturn(ResponseEntity.status(HttpStatus.NO_CONTENT).build())
 
-        val exception: RestClientException = assertThrows { service.issues("COV") }
+        val exception: RestClientException = assertThrows { service.issues("COV", 0, 50) }
         assertEquals("Error while searching issues", exception.message)
     }
+
+    @Test
+    fun `when invoking issues() if projectKey is invalid expect an Exception`() {
+        val log: Logger = mock()
+        val restClient: AtlassianHostRestClients = mock()
+        val service = JiraCloudService(log, restClient)
+        // too short
+        var exception: IllegalArgumentException = assertThrows { service.issues("A", 0, 50) }
+        assertEquals("Invalid key 'A'", exception.message)
+        // too long
+        exception = assertThrows { service.issues("THISPROJECTKEYISTOOLONG", 0, 50) }
+        assertEquals("Invalid key 'THISPROJECTKEYISTOOLONG'", exception.message)
+        // not alphanum
+        exception = assertThrows { service.issues("'';", 0, 50) }
+        assertEquals("Invalid key ''';'", exception.message)
+    }
+
 }
