@@ -3,6 +3,7 @@ import { Grid, GridColumn } from "@atlaskit/page";
 
 import Layout from "../components/Layout";
 import Projects from "../components/Projects";
+import { Link } from "gatsby";
 
 // FIXME link to enforced rules
 const ProjectsPage = ({ loading, projects, onEvaluate }) => {
@@ -22,15 +23,7 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
           <h2>More info</h2>
           <ul>
             <li>
-              <a
-                href="#not-yet-imptemented"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("I'm currently working on this document");
-                }}
-              >
-                Enforced rules
-              </a>
+            <Link to="/rules">Enforced Rules</Link>
             </li>
             <li>
               <a

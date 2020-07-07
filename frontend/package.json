@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@atlaskit/button": "^13.4.1",
+    "@atlaskit/code": "^12.0.0",
     "@atlaskit/css-reset": "^5.0.12",
     "@atlaskit/dynamic-table": "^13.7.7",
     "@atlaskit/icon": "^20.1.2",
