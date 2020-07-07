@@ -67,4 +67,14 @@ class JiraTest {
                 "User has the option to trigger a full project analysis (all tickets are evaluated).\n"
         assertEquals(expectedText, issue.descriptionText)
     }
+
+    @Test
+    fun `when parsing issue cov-1-description-null expect descriptionText to be the empty String"`() {
+        val issue: Issue = MAPPER.readValue(getResourceAsString("/samples/issues/cov-1-description-null.json"))
+        assertEquals("10000", issue.id)
+        assertEquals("https://covidio.atlassian.net/rest/api/3/issue/10000", issue.self)
+        assertEquals("COV-1", issue.key)
+        assertEquals("Dashboard", issue.summary)
+        assertEquals("", issue.descriptionText)
+    }
 }

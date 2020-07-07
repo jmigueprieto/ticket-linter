@@ -24,6 +24,9 @@ class Jira {
         }
 
         private fun extractText(): String {
+            if (fields.description == null) {
+                return ""
+            }
             val buff = StringBuilder()
             extractText(buff, fields.description)
             return buff.toString()
@@ -50,6 +53,6 @@ class Jira {
 
     data class IssueFields(val issuetype: IssueType,
                            val summary: String,
-                           val description: ADFNode)
+                           val description: ADFNode?)
 
 }
