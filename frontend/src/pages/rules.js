@@ -17,12 +17,26 @@ const exampleCodeBlock = `
 const RulesPage = () => {
   return (
     <Layout>
-      <Grid spacing="comfortable">
+      <Grid>
         <GridColumn>
-          <Link to="/projects">Back</Link>
-          <h1>Enforced Rules</h1>
-          <hr/>
-          <p style={{ margin: "20px 0" }}>
+          <div
+            style={{
+              color: "#6b778c",
+              fontWeight: "500",
+              marginBottom: "1rem",
+            }}
+          >
+            <Link style={{ color: "#6b778c" }} to="/projects">
+              Linter Evaluation
+            </Link>{" "}
+            / Enforced Rules
+          </div>
+        </GridColumn>
+
+        <GridColumn>
+          <h2>Enforced Rules</h2>
+          <hr />
+          <p>
             The description of your Jira User Stories should be written
             following the well-known{" "}
             <a
@@ -43,13 +57,13 @@ const RulesPage = () => {
               showLineNumbers={false}
             />
           </p>
-          <p style={{ margin: "20px 0" }}>
+          <p>
             The user story must be written inside the <b>description</b> text
             area in order to be evaluated.
           </p>
-          <p style={{ margin: "30px 0" }} >
+          <p style={{ margin: "30px 0" }}>
             <h3>Example</h3>
-            <div style={{ width: "70%", margin: "0 auto" }}>
+            <div style={{ width: "70%", margin: "auto" }}>
               <img
                 width="100%"
                 src={sampleStory}

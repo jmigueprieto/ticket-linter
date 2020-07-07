@@ -1,11 +1,9 @@
 import React from "react";
 import { Grid, GridColumn } from "@atlaskit/page";
-
 import Layout from "../components/Layout";
 import Projects from "../components/Projects";
 import { Link } from "gatsby";
 
-// FIXME link to enforced rules
 const ProjectsPage = ({ loading, projects, onEvaluate }) => {
   return (
     <Layout>
