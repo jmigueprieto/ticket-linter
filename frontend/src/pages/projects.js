@@ -1,10 +1,9 @@
 import React from "react";
 import { Grid, GridColumn } from "@atlaskit/page";
-
 import Layout from "../components/Layout";
 import Projects from "../components/Projects";
+import LinksMenu from "../components/LinksMenu";
 
-// FIXME link to enforced rules
 const ProjectsPage = ({ loading, projects, onEvaluate }) => {
   return (
     <Layout>
@@ -19,29 +18,7 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
           </p>
         </GridColumn>
         <GridColumn medium={4}>
-          <h2>More info</h2>
-          <ul>
-            <li>
-              <a
-                href="#not-yet-imptemented"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("I'm currently working on this document");
-                }}
-              >
-                Enforced rules
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.atlassian.com/agile/project-management/user-stories"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Examples of well written stories
-              </a>
-            </li>
-          </ul>
+          <LinksMenu/>
         </GridColumn>
         <GridColumn>
           <div style={{ marginTop: "2rem" }}>
