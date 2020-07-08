@@ -3,8 +3,7 @@ package me.mprieto.covidio.linter.services.atlassian
 import com.atlassian.connect.spring.AtlassianHostRestClients
 import com.fasterxml.jackson.module.kotlin.readValue
 import me.mprieto.covidio.linter.exceptions.RestClientException
-import me.mprieto.covidio.linter.services.atlassian.Jira.IssueSearch
-import me.mprieto.covidio.linter.services.atlassian.Jira.Project
+import me.mprieto.covidio.linter.services.atlassian.Jira.*
 import me.mprieto.covidio.linter.utils.TestUtils.Companion.MAPPER
 import me.mprieto.covidio.linter.utils.getResourceAsString
 import me.mprieto.covidio.linter.utils.mock
@@ -149,6 +148,55 @@ class JiraCloudServiceTest {
         // not alphanum
         exception = assertThrows { service.issues("'';", 0, 50) }
         assertEquals("Invalid key ''';'", exception.message)
+    }
+
+    @Test
+    fun `when invoking issue() if restClient successfully retrieves an issue expect it to be returned`() {
+        val log: Logger = mock()
+        val restClient: AtlassianHostRestClients = mock()
+        val restTemplate: RestTemplate = mock()
+        whenever(restClient.authenticatedAsAddon()).thenReturn(restTemplate)
+
+        val service = JiraCloudService(log, restClient)
+
+        val sampleIssue: Issue = MAPPER.readValue(getResourceAsString("/samples/issues/cov-1.json"))
+        whenever(restTemplate.exchange(any(), eq(typeRef<Issue>())))
+                .thenReturn(ResponseEntity.ok(sampleIssue))
+
+        val issue = service.issue("COV-1")
+        assertEquals("COV-1", issue.key)
+    }
+
+    @Test
+    fun `when invoking issue() if restClient fails to retrieve an issue expect an Exception`() {
+        val log: Logger = mock()
+        val restClient: AtlassianHostRestClients = mock()
+        val restTemplate: RestTemplate = mock()
+        whenever(restClient.authenticatedAsAddon()).thenReturn(restTemplate)
+
+        val service = JiraCloudService(log, restClient)
+
+        whenever(restTemplate.exchange(any(), eq(typeRef<Issue>())))
+                .thenThrow(HttpClientErrorException(HttpStatus.UNAUTHORIZED))
+
+        val exception: RestClientException = assertThrows { service.issue("COV-1") }
+        assertEquals("Error while making a request to Jira. Response status code: '401'", exception.message)
+    }
+
+    @Test
+    fun `when invoking issue() if restClient response is successful but not a 200 expect an Exception`() {
+        val log: Logger = mock()
+        val restClient: AtlassianHostRestClients = mock()
+        val restTemplate: RestTemplate = mock()
+        whenever(restClient.authenticatedAsAddon()).thenReturn(restTemplate)
+
+        val service = JiraCloudService(log, restClient)
+
+        whenever(restTemplate.exchange(any(), eq(typeRef<Issue>())))
+                .thenReturn(ResponseEntity.status(HttpStatus.CONTINUE).build())
+
+        val exception: RestClientException = assertThrows { service.issue("COV-1") }
+        assertEquals("Error while getting issue 'COV-1'", exception.message)
     }
 
 }
