@@ -40,6 +40,16 @@
           }
         ]
       }
+    ],
+    "webPanels": [
+      {
+        "key": "linter-web-panel",
+        "name": {
+          "value": "Linter"
+        },
+        "url": "/issue?issue_key={issue.key}",
+        "location": "atl.jira.view.issue.right.context"
+      }
     ]
   },
   "apiMigrations": {

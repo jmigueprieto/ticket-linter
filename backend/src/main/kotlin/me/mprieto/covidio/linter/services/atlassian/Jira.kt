@@ -23,6 +23,9 @@ class Jira {
             extractText()
         }
 
+        val isStory: Boolean
+            get() = fields.issuetype.name.toLowerCase().contains("story")
+
         private fun extractText(): String {
             if (fields.description == null) {
                 return ""

@@ -4,12 +4,14 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import me.mprieto.covidio.linter.services.atlassian.Jira.*
 import me.mprieto.covidio.linter.utils.TestUtils.Companion.MAPPER
 import me.mprieto.covidio.linter.utils.getResourceAsString
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class JiraTest {
 
     private val storyType = IssueType("10001", "Story", "Functionality or a feature expressed as a user goal.")
+
+    private val bugType = IssueType("10002", "Bug", "Something that you can disguise as a feature.")
 
     @Test
     fun `when getting summary from issue expect value set in IssueFields`() {
@@ -77,4 +79,22 @@ class JiraTest {
         assertEquals("Dashboard", issue.summary)
         assertEquals("", issue.descriptionText)
     }
+
+    @Test
+    fun `when issuetype contains story in its name expect isStory to be true`() {
+        val issue: Issue = MAPPER.readValue(getResourceAsString("/samples/issues/cov-1.json"))
+        assertTrue(issue.isStory)
+    }
+
+    @Test
+    fun `when issuetype does not contain story in its name expect isStory to be false`(){
+        val issueFields = IssueFields(bugType, "Nothing works", ADFNode("doc", emptyList(), ""))
+        val issue = Issue(
+                id = "10003",
+                key = "COV-1",
+                self = "https://covidio.atlassian.net/rest/api/3/issue/10000",
+                fields = issueFields)
+        assertFalse(issue.isStory)
+    }
+
 }

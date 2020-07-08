@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ticket Linter</title>
+    <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@6.0.0/dist/bundle.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/@atlaskit/reduced-ui-pack@13.0.0/dist/bundle.css"/>
+</head>
+<body>
+<div th:if="${validation==null}">
+    I don't know what rules to apply to this type of issue
+</div>
+<div th:if="${validation!=null}">
+    <div th:if="${validation.valid}">
+        <p>
+            Great job, Everything looks good!
+        </p>
+    </div>
+    <div th:if="${!validation.valid}">
+        <p>
+            Oops, it seems like there are some issues here...
+        </p>
+    </div>
+    <div style="margin-top:1rem">
+        <ul th:each="message: ${validation.messages}">
+            <li th:text="${message}"/>
+        </ul>
+    </div>
+</div>
+<script key="atlassian" src="https://connect-cdn.atl-paas.net/all.js"></script>
+</body>
+</html>

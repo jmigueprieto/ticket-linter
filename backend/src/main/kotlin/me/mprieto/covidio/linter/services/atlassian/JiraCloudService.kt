@@ -19,6 +19,9 @@ import java.net.URI
 class JiraCloudService(private val log: Logger, private val restClient: AtlassianHostRestClients) {
 
     companion object {
+        // https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get
+        private const val ISSUE_PATH = "/rest/api/3/issue/"
+
         // https://developer.atlassian.com/cloud/jira/platform/rest/v3/#api-rest-api-3-project-get
         private const val PATH_PROJECT = "/rest/api/3/project"
 
@@ -74,6 +77,19 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         // total is "The number of results on the page." according to the doc
         // but on the actual response it seems to be the number of issues in the search
         Page(data = search.issues, total = search.total)
+    }
+
+    @Throws(RestClientException::class)
+    fun issue(issueKey: String) = getOrThrowException {
+        val request = RequestEntity<Any>(HttpMethod.GET, URI("$ISSUE_PATH/$issueKey"))
+        val response: ResponseEntity<Issue> = restClient.authenticatedAsAddon().exchange(request)
+
+        if (response.statusCode != HttpStatus.OK) {
+            log.error("GET issue '{}' response was '{}'. Was Expecting 200.", issueKey, response.statusCode)
+            throw RestClientException("Error while getting issue '$issueKey'")
+        }
+
+        response.body!!
     }
 
     private fun <T> getOrThrowException(lambda: () -> T): T {

@@ -17,6 +17,8 @@ set of rules or format.
 
 ![Screenshot](./docs/images/screenshot-02.png)
 
+![Screenshot](./docs/images/screenshot-03.png)
+
 
 ## User Story Expected Format
 
@@ -51,6 +53,7 @@ _Handles tasks like JWT authentication and signing, persistence of host details,
 
 #### Frontend
 - Gatsby.
+- Spring MVC + Thymeleaf.
 
 ---
 
