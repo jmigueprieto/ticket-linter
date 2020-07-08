@@ -9,7 +9,7 @@ exports.onRenderBody = ({ setHeadComponents }) => {};
 
 exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   const headComponents = getHeadComponents();
-  headComponents.push(<script key="atlassian" src="https://connect-cdn.atl-paas.net/all-debug.js" />);
+  headComponents.push(<script key="atlassian" src="https://connect-cdn.atl-paas.net/all.js" />);
 
   replaceHeadComponents(headComponents);
 };
