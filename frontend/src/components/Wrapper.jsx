@@ -9,7 +9,7 @@ export default ({ children }) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     console.log(`Loading projects from ${API_BASE_URL}`);
-    getProjects(setProjects, setLoading);
+    //getProjects(setProjects, setLoading);
   }, []);
 
   async function getProjects(setProjects, setLoading) {
