@@ -18,9 +18,6 @@ import java.time.format.DateTimeFormatter
 class ProjectEvaluationController(private val log: Logger,
                                   private val jiraService: JiraCloudService,
                                   private val validatorService: ValidatorService) {
-    companion object {
-        const val PAGE_SIZE = 50
-    }
 
     @GetMapping(value = ["/linter/api/projects/{key}/evaluation"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun evaluation(@AuthenticationPrincipal user: AtlassianHostUser,
@@ -28,7 +25,7 @@ class ProjectEvaluationController(private val log: Logger,
         val host = user.host.baseUrl
         log.debug("Listing open issues of '{}' in host '{}'", projectKey, host)
 
-        val data = getAllProjectIssues(projectKey)
+        val data = jiraService.issues(projectKey)
         val total = data.size
         log.debug("Total issues '{}', found issues: '{}'", total, data)
 
@@ -46,27 +43,6 @@ class ProjectEvaluationController(private val log: Logger,
         val responseBody = Evaluation(total, timestamp, violations, stories)
 
         return ResponseEntity.ok(responseBody)
-    }
-
-    //TODO move pagination logic to client (Gatsby app). Controller will just return one page at a time.
-    private fun getAllProjectIssues(projectKey: String): List<Issue> {
-        data class PageCounter(var startAt: Int = 0) {
-            fun next(total: Int): Boolean {
-                startAt += PAGE_SIZE
-                // if the page was full, request the next page
-                return startAt < total
-            }
-        }
-
-        val counter = PageCounter()
-        val issues = mutableListOf<Issue>()
-        do {
-            log.debug("Requesting issues from '${counter.startAt}', page size $PAGE_SIZE")
-            val page = jiraService.issues(projectKey, counter.startAt, PAGE_SIZE)
-            log.debug("Found '${page.data.size}' issues from start at '${counter.startAt}' with page size '$PAGE_SIZE'")
-            issues.addAll(page.data)
-        } while (counter.next(page.total))
-        return issues
     }
 
 }

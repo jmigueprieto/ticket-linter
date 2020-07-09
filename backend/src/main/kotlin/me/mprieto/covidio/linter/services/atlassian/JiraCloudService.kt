@@ -29,6 +29,9 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         private const val PATH_SEARCH = "/rest/api/3/search"
 
         private val PROJECT_KEY_REGEX = "[a-zA-Z0-9]{2,10}".toRegex()
+
+        const val DEFAULT_PAGE_SIZE = 50
+
     }
 
     /**
@@ -47,6 +50,33 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         response.body!!
     }
 
+
+    /**
+     * Returns a list of ALL unresolved issues with issuetype equal to "Story".
+     *
+     * @param projectKey the Key of the Jira Project in which to search for tickets
+     */
+    fun issues(projectKey: String): List<Issue> {
+        data class PageCounter(var startAt: Int = 0) {
+            fun next(total: Int): Boolean {
+                startAt += DEFAULT_PAGE_SIZE
+                // if the page was full, request the next page
+                return startAt < total
+            }
+        }
+
+        val counter = PageCounter()
+        val issues = mutableListOf<Issue>()
+        do {
+            log.debug("Requesting issues from '${counter.startAt}', page size $DEFAULT_PAGE_SIZE")
+            val page = issues(projectKey, counter.startAt, DEFAULT_PAGE_SIZE)
+            log.debug("Found '${page.data.size}' issues from start at '${counter.startAt}' with page size '$DEFAULT_PAGE_SIZE'")
+            issues.addAll(page.data)
+        } while (counter.next(page.total))
+
+        return issues
+    }
+
     /**
      * Returns a paginated list of unresolved issues with issuetype equal to "Story".
      *
@@ -58,9 +88,7 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
             throw IllegalArgumentException("Invalid key '$projectKey'")
         }
 
-        data class RequestBody(val fields: List<String>, val startAt: Int, val maxResults: Int, val jql: String)
-
-        val requestBody = RequestBody(
+        val requestBody = IssueSearchRequestBody(
                 startAt = startAt,
                 maxResults = maxResults,
                 fields = listOf("issuetype", "status", "summary", "description"),
@@ -103,4 +131,4 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
 
 }
 
-
+private data class IssueSearchRequestBody(val fields: List<String>, val startAt: Int, val maxResults: Int, val jql: String)
