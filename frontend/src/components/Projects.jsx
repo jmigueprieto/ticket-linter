@@ -37,7 +37,7 @@ function getRows(projects, onEvaluate) {
         {
           key: `actions-${index}`,
           content: (
-            <div style={{ textAlign: "left"}}>
+            <div style={{ textAlign: "left" }}>
               {project.violations > 0 ? (
                 <Button
                   component={Link}
