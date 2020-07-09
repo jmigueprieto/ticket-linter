@@ -2,10 +2,18 @@ import React from "react";
 import DynamicTable from "@atlaskit/dynamic-table";
 import CheckCicleIcon from "@atlaskit/icon/glyph/check-circle";
 import CrossCircleIcon from "@atlaskit/icon/glyph/cross-circle";
+import { useState } from "react";
 
 export default ({ issues, loading }) => {
+  const [filter, setFilter] = useState("");
+  const filteredIssues = !filter
+    ? issues
+    : issues.filter((i) => {
+        const expression = filter.toLocaleLowerCase();
+        return (i.summary && i.summary.toLowerCase().includes(expression)) || i.key.toLowerCase().includes(expression);
+      });
   const head = createHead();
-  const rows = issues.map((issue, index) => {
+  const rows = filteredIssues.map((issue, index) => {
     return {
       key: `${index}`,
       cells: [
@@ -48,7 +56,19 @@ export default ({ issues, loading }) => {
     };
   });
 
-  return <DynamicTable head={head} rows={rows} isFixedSize isLoading={loading} />;
+  return (
+    <>
+      <input
+        className="ak-field-text"
+        placeholder="Filter by Issue Key or Summary"
+        style={{ width: "400px", marginBottom: "1rem" }}
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        aria-label="Filter"
+      ></input>
+      <DynamicTable rowsPerPage={10} defaultPage={1} head={head} rows={rows} isFixedSize isLoading={loading} />
+    </>
+  );
 };
 
 const createHead = () => {

@@ -20,7 +20,7 @@ const IssuesPage = ({ location }) => {
           </div>
         </GridColumn>
         <GridColumn medium={12}>
-          <h2>Results</h2>
+          <h2 style={{ marginBottom: "1rem" }}>Results</h2>
           <Issues issues={project.issues} loading={false} />
         </GridColumn>
       </Grid>

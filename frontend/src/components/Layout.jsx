@@ -1,7 +1,7 @@
 import React from "react";
 import "@atlaskit/css-reset";
+import "@atlaskit/reduced-ui-pack";
 import { Helmet } from "react-helmet";
-import "@atlaskit/css-reset";
 import styled from "styled-components";
 import Page from "@atlaskit/page";
 
