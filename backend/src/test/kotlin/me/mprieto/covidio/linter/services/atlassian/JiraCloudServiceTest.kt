@@ -4,17 +4,16 @@ import com.atlassian.connect.spring.AtlassianHostRestClients
 import com.fasterxml.jackson.module.kotlin.readValue
 import me.mprieto.covidio.linter.exceptions.RestClientException
 import me.mprieto.covidio.linter.services.atlassian.Jira.*
+import me.mprieto.covidio.linter.services.pagination.Page
+import me.mprieto.covidio.linter.utils.*
 import me.mprieto.covidio.linter.utils.TestUtils.Companion.MAPPER
-import me.mprieto.covidio.linter.utils.getResourceAsString
-import me.mprieto.covidio.linter.utils.mock
-import me.mprieto.covidio.linter.utils.typeRef
-import me.mprieto.covidio.linter.utils.whenever
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.eq
+import org.mockito.Mockito.*
 import org.slf4j.Logger
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
@@ -98,7 +97,6 @@ class JiraCloudServiceTest {
         val page = service.issues("COV", 0, 500)
         assertEquals(202, page.total)
         assertEquals(2, page.data.size)
-        //TODO more asserts over the returned data
     }
 
     @Test
@@ -197,6 +195,38 @@ class JiraCloudServiceTest {
 
         val exception: RestClientException = assertThrows { service.issue("COV-1") }
         assertEquals("Error while getting issue 'COV-1'", exception.message)
+    }
+
+    @Test
+    fun `when invoking issues() if results are greater than page size expect pagination`() {
+        val log: Logger = mock()
+        val restClient: AtlassianHostRestClients = mock()
+        val restTemplate: RestTemplate = mock()
+        whenever(restClient.authenticatedAsAddon()).thenReturn(restTemplate)
+
+        val service = spy(JiraCloudService(log, restClient))
+
+        val pageSize = JiraCloudService.DEFAULT_PAGE_SIZE
+        val total = pageSize * 2 + 1
+
+        doReturn(Page(generateListOfIssues(1, pageSize), total))
+                .`when`(service)
+                .issues("COV", 0, pageSize) // startAt: 0, 50
+
+        doReturn(Page(generateListOfIssues(pageSize + 1, pageSize * 2), total))
+                .`when`(service)
+                .issues("COV", pageSize, pageSize) // startAt: 50, 50
+
+        doReturn(Page(generateListOfIssues(pageSize * 2 + 1, pageSize * 2 + 1), total))
+                .`when`(service)
+                .issues("COV", pageSize * 2, pageSize) // startAt: 100, 50
+
+        val issues = service.issues("COV")
+
+        verify(service, times(1)).issues("COV", 0, pageSize)
+        verify(service, times(1)).issues("COV", pageSize, pageSize)
+        verify(service, times(1)).issues("COV", pageSize * 2, pageSize)
+        assertEquals(total, issues.size)
     }
 
 }
