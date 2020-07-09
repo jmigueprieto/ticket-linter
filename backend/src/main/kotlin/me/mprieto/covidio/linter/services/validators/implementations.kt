@@ -18,7 +18,7 @@ class UserStoryValidator(val log: Logger) : Validator {
             .toRegex(setOf(RegexOption.IGNORE_CASE))
 
     override fun validate(text: String): ValidationResult {
-        log.debug("Analyzing story '{}'", text)
+        log.trace("Analyzing story '{}'", text)
         val found = regexWithBenefit.find(text) ?: regexSimple.find(text)
         if (found == null) {
             log.debug("The following text doesn't seem to contain a properly written user story: '$text'")
@@ -30,9 +30,9 @@ class UserStoryValidator(val log: Logger) : Validator {
         val benefit = if (found.groups.size == 4) null else found.groups["benefit"]
 
         // This data can be used to analyze stories
-        log.debug("persona: $persona")
-        log.debug("intent: $intent")
-        log.debug("benefit: $benefit")
+        log.trace("persona: $persona")
+        log.trace("intent: $intent")
+        log.trace("benefit: $benefit")
 
         return if (benefit == null) {
             ValidationResult(true, "OK, but Benefit is missing.")

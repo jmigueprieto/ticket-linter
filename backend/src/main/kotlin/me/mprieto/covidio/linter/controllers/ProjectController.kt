@@ -27,6 +27,7 @@ class ProjectController(private val log: Logger,
                     "violations" to "N/A")
         }
 
+        log.trace("Response body: {}", responseBody)
         return ResponseEntity.ok(responseBody)
     }
 

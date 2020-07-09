@@ -33,7 +33,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     runtimeOnly("mysql:mysql-connector-java")
-    //runtimeOnly("com.h2database:h2")
+    implementation("com.bugsnag:bugsnag-spring:3.+")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")

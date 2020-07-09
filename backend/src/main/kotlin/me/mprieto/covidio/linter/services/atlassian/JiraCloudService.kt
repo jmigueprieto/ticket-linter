@@ -68,9 +68,10 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
         val counter = PageCounter()
         val issues = mutableListOf<Issue>()
         do {
-            log.debug("Requesting issues from '${counter.startAt}', page size $DEFAULT_PAGE_SIZE")
+            log.trace("Requesting issues from '{}', page size '{}'", counter.startAt, DEFAULT_PAGE_SIZE)
             val page = issues(projectKey, counter.startAt, DEFAULT_PAGE_SIZE)
-            log.debug("Found '${page.data.size}' issues from start at '${counter.startAt}' with page size '$DEFAULT_PAGE_SIZE'")
+            log.trace("Found '{}' issues from start at '{}' with page size '{}'",
+                    page.data.size, counter.startAt, DEFAULT_PAGE_SIZE)
             issues.addAll(page.data)
         } while (counter.next(page.total))
 
