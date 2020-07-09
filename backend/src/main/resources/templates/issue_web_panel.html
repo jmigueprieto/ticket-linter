@@ -3,25 +3,77 @@
     <title>Ticket Linter</title>
     <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@6.0.0/dist/bundle.css"/>
     <link rel="stylesheet" href="https://unpkg.com/@atlaskit/reduced-ui-pack@13.0.0/dist/bundle.css"/>
+    <script src="https://kit.fontawesome.com/cb4d7c6b86.js" crossorigin="anonymous"></script>
+    <style>
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+        li:before {
+            content: "";
+            display: block;
+            border-radius:5px;
+            width: 10px;
+            height: 10px;
+            float: left;
+            margin: 5px  5px 0 0;
+            background-color: #000;
+        }
+        li.ok:before {
+            background-color: #1fc600;
+        }
+        li.error:before {
+            background-color: red;
+        }
+        li.warn:before {
+            background-color: orange;
+        }
+
+        .result {
+
+            padding: 10px 0 10px 10px;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .rinfo {
+            background-color: #eafaff;
+        }
+
+        .rsuccess {
+            background-color: #e7f6ef;
+        }
+
+        .rerror {
+            background-color: #feeded;
+        }
+
+        i {
+         padding: 10px;
+        }
+
+
+    </style>
 </head>
 <body>
-<div th:if="${validation==null}">
-    I don't know what rules to apply to this type of issue
+<div th:if="${validation==null}" class="result rinfo">
+    <i class="fas fa-info-circle fa-2x" style="color:#8aa9db;"></i>
+    <div>This issue is not of type "Story" (ignoring validation).</div>
 </div>
 <div th:if="${validation!=null}">
-    <div th:if="${validation.valid}">
-        <p>
-            Great job, Everything looks good!
-        </p>
+    <div th:if="${validation.valid}" class="result rsuccess">
+        <i class="fas fa-check-circle fa-2x" style="color:#43862a;"></i>
+        <div>Great job, Everything looks good!</div>
+
     </div>
-    <div th:if="${!validation.valid}">
-        <p>
-            Oops, it seems like there are some issues here...
-        </p>
+    <div th:if="${!validation.valid}" class="result rerror">
+        <i class="fas fa-exclamation-circle fa-2x" style="color:#de8585;"></i>
+        <div>The following issues where found.</div>
     </div>
     <div style="margin-top:1rem">
         <ul th:each="message: ${validation.messages}">
-            <li th:text="${message}"/>
+            <li th:text="${message}">nbsp;</li>
         </ul>
     </div>
 </div>
