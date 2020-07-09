@@ -3,7 +3,8 @@ import { LinkItem, CustomItem, ButtonItem } from "@atlaskit/menu";
 import { Link } from "gatsby";
 import ArrowRightIcon from "@atlaskit/icon/glyph/arrow-right";
 import LinkIcon from "@atlaskit/icon/glyph/link";
-import CameraFilledIcon from '@atlaskit/icon/glyph/camera-filled';
+import CameraFilledIcon from "@atlaskit/icon/glyph/camera-filled";
+import { SpotlightTarget } from "@atlaskit/onboarding";
 
 const LinksMenu = (props) => {
   return (
@@ -25,13 +26,15 @@ const LinksMenu = (props) => {
       >
         User Stories with Examples
       </LinkItem>
-      <ButtonItem
-        description="Let us show you how this works"
-        iconBefore={<CameraFilledIcon />}
-        onClick={() => props.setActive(0)}
-      >
-        Take a Tour
-      </ButtonItem>
+      <SpotlightTarget name="start">
+        <ButtonItem
+          description="Let us show you how this works"
+          iconBefore={<CameraFilledIcon />}
+          onClick={() => props.start(0)}
+        >
+          Take a Tour
+        </ButtonItem>
+      </SpotlightTarget>
     </>
   );
 };

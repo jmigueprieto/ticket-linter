@@ -3,7 +3,8 @@ import DynamicTable from "@atlaskit/dynamic-table";
 import Button from "@atlaskit/button";
 import Badge from "@atlaskit/badge";
 import { Link } from "gatsby";
-import { SpotlightTarget } from "@atlaskit/onboarding";
+import { SpotlightTarget, Modal } from "@atlaskit/onboarding";
+import linterResultsImg from "../images/linter-results.png";
 
 const projects = [
   {
@@ -26,14 +27,43 @@ const projects = [
   },
 ];
 
-export const MockProjectsTable = () => {
+export const MockProjectsTable = ({ active, finish }) => {
   const head = createHead();
   const rows = getRows(projects);
-
   return (
-    <SpotlightTarget name="step-2">
-      <DynamicTable head={head} rows={rows} isFixedSize isLoading={false} />
-    </SpotlightTarget>
+    <>
+      {active !== 4 ? (
+        <SpotlightTarget name="scan-results">
+          <DynamicTable head={head} rows={rows} isFixedSize isLoading={false} />
+        </SpotlightTarget>
+      ) : (
+        <Modal
+          actions={[{ onClick: finish, text: "End Tour" }]}
+          heading="View Project Resuls"
+          key="project-results"
+          style={{ textAlign: "left" }}
+          width={900}
+        >
+          <p>
+            Once Clicked on the View Results button you will be taken to the
+            issues detail page.
+          </p>
+          <img
+            width="100%"
+            src={linterResultsImg}
+            alt="Story Evaluation Results"
+          />
+          <span style={{ textAlign: "left" }}>
+          <h4>In this page you will be able to see: </h4>
+            <ul>
+              <li>Which stories are well formed </li>
+              <li>Which ones violated the rules </li>
+              <li>A link to the story details </li>
+            </ul>
+          </span>
+        </Modal>
+      )}
+    </>
   );
 };
 
@@ -66,7 +96,7 @@ function getRows(projects) {
           content: (
             <div style={{ textAlign: "left" }}>
               {project.violations > 0 ? (
-                <SpotlightTarget name="step-3">
+                <SpotlightTarget name="view-results">
                   <Button
                     component={Link}
                     to="/issues"
@@ -86,11 +116,17 @@ function getRows(projects) {
           key: `options-${index}`,
           content: (
             <div style={{ textAlign: "right" }}>
-              <SpotlightTarget name={`step-${index}`}>
+              {index === 0 ? (
+                <SpotlightTarget name="scan-project">
+                  <Button appearance="primary" style={{ marginRight: "1rem" }}>
+                    Scan Project
+                  </Button>
+                </SpotlightTarget>
+              ) : (
                 <Button appearance="primary" style={{ marginRight: "1rem" }}>
                   Scan Project
                 </Button>
-              </SpotlightTarget>
+              )}
             </div>
           ),
         },

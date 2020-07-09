@@ -7,28 +7,21 @@ import { renderActiveSpotlight } from "../libraries/tour";
 
 import {
   SpotlightManager,
-  SpotlightTarget,
   SpotlightTransition,
 } from "@atlaskit/onboarding";
 import { MockProjectsTable } from "../components/MockProjects";
-import { render } from "react-dom";
 
 const ProjectsPage = ({ loading, projects, onEvaluate }) => {
   const [active, setActive] = useState(null);
 
-  const start = () => setActive(0);
   const next = () => setActive((active || 0) + 1);
   const prev = () => setActive((active || 0) - 1);
-  const finish = () => {
-    console.log("FINITO");
-    setActive(null);
-  };
+  const finish = () => setActive(null);
 
   const actions = {
     next: next,
     prev: prev,
     finish: finish,
-    start: start,
   };
 
   return (
@@ -54,12 +47,12 @@ const ProjectsPage = ({ loading, projects, onEvaluate }) => {
             </p>
           </GridColumn>
           <GridColumn medium={4}>
-            <LinksMenu setActive={setActive} />
+            <LinksMenu start={setActive} />
           </GridColumn>
           <GridColumn>
             <div style={{ marginTop: "2rem" }}>
-              {active ? (
-                <MockProjectsTable />
+              {active !== null? (
+                <MockProjectsTable active={active} finish={actions.finish}/>
               ) : (
                 <Projects
                   projects={projects}
