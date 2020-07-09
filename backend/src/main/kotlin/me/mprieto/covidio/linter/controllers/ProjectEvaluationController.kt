@@ -23,11 +23,10 @@ class ProjectEvaluationController(private val log: Logger,
     fun evaluation(@AuthenticationPrincipal user: AtlassianHostUser,
                    @PathVariable("key") projectKey: String): ResponseEntity<Any> {
         val host = user.host.baseUrl
-        log.debug("Listing open issues of '{}' in host '{}'", projectKey, host)
+        log.debug("Evaluating project: '{}' of host '{}'", projectKey, host)
 
         val data = jiraService.issues(projectKey)
         val total = data.size
-        log.debug("Total issues '{}', found issues: '{}'", total, data)
 
         val stories = data.map {
             val key = it.key
@@ -41,7 +40,8 @@ class ProjectEvaluationController(private val log: Logger,
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 
         val responseBody = Evaluation(total, timestamp, violations, stories)
-
+        log.debug("Returning total: '{}', timestamp: '{}', violations: '{}'", total, data, violations)
+        log.trace("Response body: {}", responseBody)
         return ResponseEntity.ok(responseBody)
     }
 

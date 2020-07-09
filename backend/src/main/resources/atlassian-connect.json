@@ -1,5 +1,5 @@
 {
-  "name": "Ticket Linter",
+  "name": "${APP_NAME:Ticket Linter}",
   "description": "Ticket Linter is a tool that analyzes your Jira tickets to flag potential errors",
   "key": "${APP_KEY:me.mprieto.covidio.linter}",
   "baseUrl": "${APP_BASE_URL:https://covidio.ngrok.io}",

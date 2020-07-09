@@ -14,3 +14,10 @@ management:
     web:
       exposure:
         include: ["health", "info", "configprops", "env"]
+
+info:
+  app:
+    name: Ticket Linter
+    description: Jira Cloud Application that analyzes issues
+
+# bugsnag.key: "DON'T_LET_YOUR_KEY_BECOME_PUBLICLY_AVAIABLE"

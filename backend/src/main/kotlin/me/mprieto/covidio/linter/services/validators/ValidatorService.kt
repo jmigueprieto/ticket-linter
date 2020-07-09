@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service
 class ValidatorService(private val log: Logger, val validators: List<Validator>) {
 
     fun validate(text: String): ValidationResult {
-        log.debug("Validating '{}'", text)
         val results = validators.map { validator -> validator.validate(text) }
         log.debug("Result of validating '{}' : {}", text, results)
         return ValidationResult(results.all { it.isValid }, results.flatMap { it.messages })
