@@ -52,7 +52,7 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
 
 
     /**
-     * Returns a paginated list of ALL unresolved issues with issuetype equal to "Story".
+     * Returns a list of ALL unresolved issues with issuetype equal to "Story".
      *
      * @param projectKey the Key of the Jira Project in which to search for tickets
      */
@@ -73,6 +73,7 @@ class JiraCloudService(private val log: Logger, private val restClient: Atlassia
             log.debug("Found '${page.data.size}' issues from start at '${counter.startAt}' with page size '$DEFAULT_PAGE_SIZE'")
             issues.addAll(page.data)
         } while (counter.next(page.total))
+
         return issues
     }
 
