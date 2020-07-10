@@ -1,7 +1,6 @@
 package me.mprieto.covidio.linter.controllers
 
-import me.mprieto.covidio.linter.services.atlassian.ADFNode
-import me.mprieto.covidio.linter.services.atlassian.Jira.*
+import me.mprieto.covidio.linter.services.validators.Severity
 import me.mprieto.covidio.linter.services.validators.ValidationResult
 import me.mprieto.covidio.linter.services.validators.ValidatorService
 import me.mprieto.covidio.linter.utils.generateListOfIssues
@@ -38,7 +37,7 @@ class ProjectEvaluationControllerIntegrationTest : RestControllerTest() {
         val issues = generateListOfIssues(1, 100)
         whenever(jiraService.issues("COV"))
                 .thenReturn(issues)
-        whenever(validatorService.validate(anyString())).thenReturn(ValidationResult(false, "Empty Story"))
+        whenever(validatorService.validate(anyString())).thenReturn(ValidationResult(false, Severity.ERROR, "Empty Story"))
 
         mockMvc.get("/linter/api/projects/COV/evaluation?jwt=${token}") {
             accept = MediaType.APPLICATION_JSON

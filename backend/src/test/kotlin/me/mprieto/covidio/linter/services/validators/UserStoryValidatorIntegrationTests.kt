@@ -25,6 +25,8 @@ class UserStoryValidatorIntegrationTests {
         val result = validator.validate(text)
         assertTrue(result.isValid)
         assertTrue(result.messages.isEmpty())
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.SUCCESS, result.severities[0])
     }
 
     @Test
@@ -34,6 +36,8 @@ class UserStoryValidatorIntegrationTests {
         assertTrue(result.isValid)
         assertFalse(result.messages.isEmpty())
         assertEquals("OK, but Benefit is missing.", result.messages[0])
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.WARNING, result.severities[0])
     }
 
     @Test
@@ -41,5 +45,9 @@ class UserStoryValidatorIntegrationTests {
         val text = "Create database schema As a developer"
         val result = validator.validate(text)
         assertFalse(result.isValid)
+        assertEquals(1, result.messages.size)
+        assertEquals("Doesn't seem to contain a properly written User Story.", result.messages[0])
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.ERROR, result.severities[0])
     }
 }

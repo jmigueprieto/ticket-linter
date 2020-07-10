@@ -3,7 +3,6 @@
     <title>Ticket Linter</title>
     <link rel="stylesheet" href="https://unpkg.com/@atlaskit/css-reset@6.0.0/dist/bundle.css"/>
     <link rel="stylesheet" href="https://unpkg.com/@atlaskit/reduced-ui-pack@13.0.0/dist/bundle.css"/>
-    <script src="https://kit.fontawesome.com/cb4d7c6b86.js" crossorigin="anonymous"></script>
     <style>
         ul {
             padding: 0;
@@ -19,13 +18,13 @@
             margin: 5px  5px 0 0;
             background-color: #000;
         }
-        li.ok:before {
+        li.SUCCESS:before {
             background-color: #1fc600;
         }
-        li.error:before {
+        li.ERROR:before {
             background-color: red;
         }
-        li.warn:before {
+        li.WARNING:before {
             background-color: orange;
         }
 
@@ -53,7 +52,6 @@
          padding: 10px;
         }
 
-
     </style>
 </head>
 <body>
@@ -72,11 +70,12 @@
         <div>The following issues where found.</div>
     </div>
     <div style="margin-top:1rem">
-        <ul th:each="message: ${validation.messages}">
-            <li th:text="${message}">nbsp;</li>
+        <ul th:each="message, stat: ${validation.messages}">
+            <li th:class="${validation.severities[__${stat.index}__]}" th:text="${message}">nbsp;</li>
         </ul>
     </div>
 </div>
+<script src="https://kit.fontawesome.com/cb4d7c6b86.js" crossorigin="anonymous"></script>
 <script key="atlassian" src="https://connect-cdn.atl-paas.net/all.js"></script>
 </body>
 </html>

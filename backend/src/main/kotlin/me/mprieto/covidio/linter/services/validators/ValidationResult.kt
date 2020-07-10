@@ -1,6 +1,8 @@
 package me.mprieto.covidio.linter.services.validators
 
-data class ValidationResult(val isValid: Boolean, val messages: List<String>) {
-    constructor(isValid: Boolean) : this(isValid, emptyList())
-    constructor(isValid: Boolean, message: String) : this(isValid, listOf(message))
+enum class Severity { ERROR, SUCCESS, WARNING }
+
+data class ValidationResult(val isValid: Boolean, val severities: List<Severity>, val messages: List<String>) {
+    constructor(isValid: Boolean, severity: Severity) : this(isValid, listOf(severity), emptyList())
+    constructor(isValid: Boolean, severity: Severity, message: String) : this(isValid, listOf(severity), listOf(message))
 }
