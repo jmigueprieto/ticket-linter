@@ -19,13 +19,13 @@
             margin: 5px  5px 0 0;
             background-color: #000;
         }
-        li.ok:before {
+        li.SUCCESS:before {
             background-color: #1fc600;
         }
-        li.error:before {
+        li.ERROR:before {
             background-color: red;
         }
-        li.warn:before {
+        li.WARNING:before {
             background-color: orange;
         }
 
@@ -54,6 +54,21 @@
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -72,8 +87,8 @@
         <div>The following issues where found.</div>
     </div>
     <div style="margin-top:1rem">
-        <ul th:each="message: ${validation.messages}">
-            <li th:text="${message}">nbsp;</li>
+        <ul th:each="message, stat: ${validation.messages}">
+            <li th:class="${validation.severities[__${stat.index}__]}" th:text="${message}">nbsp;</li>
         </ul>
     </div>
 </div>
