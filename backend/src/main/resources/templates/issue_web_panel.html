@@ -8,22 +8,26 @@
             padding: 0;
             list-style: none;
         }
+
         li:before {
             content: "";
             display: block;
-            border-radius:5px;
+            border-radius: 5px;
             width: 10px;
             height: 10px;
             float: left;
-            margin: 5px  5px 0 0;
+            margin: 5px 5px 0 0;
             background-color: #000;
         }
+
         li.SUCCESS:before {
             background-color: #1fc600;
         }
+
         li.ERROR:before {
             background-color: red;
         }
+
         li.WARNING:before {
             background-color: orange;
         }
@@ -49,7 +53,7 @@
         }
 
         i {
-         padding: 10px;
+            padding: 10px;
         }
 
     </style>
@@ -75,7 +79,10 @@
         </ul>
     </div>
 </div>
+<button style="margin-top: 1rem" class="ak-button ak-button__appearance-primary" onclick="window.location.reload(true)">
+    Reload
+</button>
 <script src="https://kit.fontawesome.com/cb4d7c6b86.js" crossorigin="anonymous"></script>
-<script key="atlassian" src="https://connect-cdn.atl-paas.net/all.js"></script>
+<script src="https://connect-cdn.atl-paas.net/all.js" key="atlassian"></script>
 </body>
 </html>
