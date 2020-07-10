@@ -18,6 +18,8 @@ class AcceptanceCriteriaValidatorIntegrationTest {
                 "blah"
         val result = validator.validate(text)
         assertTrue(result.isValid)
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.SUCCESS, result.severities[0])
         assertTrue(result.messages.isEmpty())
     }
 
@@ -28,6 +30,8 @@ class AcceptanceCriteriaValidatorIntegrationTest {
         val result = validator.validate(text)
         assertFalse(result.isValid)
         assertFalse(result.messages.isEmpty())
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.ERROR, result.severities[0])
         assertEquals("Doesn't seem to explicitly list an Acceptance Criteria.", result.messages[0])
     }
 }

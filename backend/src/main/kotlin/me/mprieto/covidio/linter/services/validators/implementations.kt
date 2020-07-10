@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 class UserStoryValidator(val log: Logger) : Validator {
 
     private val regexWithBenefit = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+),? ?(so that|in order to) (?<benefit>.+)?"
-                    .toRegex(setOf(RegexOption.IGNORE_CASE))
+            .toRegex(setOf(RegexOption.IGNORE_CASE))
 
     private val regexSimple = "As (?<persona>.+),? ?I (want to|need to|have to)? (?<intent>.+)"
             .toRegex(setOf(RegexOption.IGNORE_CASE))
@@ -22,7 +22,7 @@ class UserStoryValidator(val log: Logger) : Validator {
         val found = regexWithBenefit.find(text) ?: regexSimple.find(text)
         if (found == null) {
             log.debug("The following text doesn't seem to contain a properly written user story: '$text'")
-            return ValidationResult(false, "Doesn't seem to contain a properly written User Story.")
+            return ValidationResult(false, Severity.ERROR, "Doesn't seem to contain a properly written User Story.")
         }
 
         val persona = found.groups["persona"]
@@ -35,9 +35,9 @@ class UserStoryValidator(val log: Logger) : Validator {
         log.trace("benefit: $benefit")
 
         return if (benefit == null) {
-            ValidationResult(true, "OK, but Benefit is missing.")
+            ValidationResult(true, Severity.WARNING, "OK, but Benefit is missing.")
         } else {
-            ValidationResult(true)
+            ValidationResult(true, Severity.SUCCESS)
         }
     }
 }
@@ -51,9 +51,9 @@ class AcceptanceCriteriaValidator : Validator {
 
     override fun validate(text: String): ValidationResult {
         return if (text.contains("acceptance criteria", true)) {
-            ValidationResult(true)
+            ValidationResult(true, Severity.SUCCESS)
         } else {
-            ValidationResult(false, "Doesn't seem to explicitly list an Acceptance Criteria.")
+            ValidationResult(false, Severity.ERROR, "Doesn't seem to explicitly list an Acceptance Criteria.")
         }
 
     }

@@ -9,6 +9,6 @@ class ValidatorService(private val log: Logger, val validators: List<Validator>)
     fun validate(text: String): ValidationResult {
         val results = validators.map { validator -> validator.validate(text) }
         log.debug("Result of validating '{}' : {}", text, results)
-        return ValidationResult(results.all { it.isValid }, results.flatMap { it.messages })
+        return ValidationResult(results.all { it.isValid }, results.flatMap { it.severities }, results.flatMap { it.messages })
     }
 }

@@ -30,31 +30,57 @@ class ValidatorServiceIntegrationTest {
     @Test
     fun `when all validators pass expect a isValid to be true`() {
         whenever(userStoryValidator.validate(anyString()))
-                .thenReturn(ValidationResult(true, "User Story - OK"))
+                .thenReturn(ValidationResult(true, Severity.SUCCESS, "User Story - OK"))
 
         whenever(acceptanceCriteriaValidator.validate(anyString()))
-                .thenReturn(ValidationResult(true, "Acceptance Criteria - OK"))
+                .thenReturn(ValidationResult(true, Severity.SUCCESS, "Acceptance Criteria - OK"))
 
         val result = validatorService.validate("mocked validators")
         assertTrue(result.isValid)
         assertEquals(2, result.messages.size)
+        assertEquals(2, result.severities.size)
         assertEquals("User Story - OK", result.messages[0])
         assertEquals("Acceptance Criteria - OK", result.messages[1])
+        assertEquals(Severity.SUCCESS, result.severities[0])
+        assertEquals(Severity.SUCCESS, result.severities[1])
     }
 
     @Test
     fun `when one validators fails expect a isValid to be false`() {
         whenever(userStoryValidator.validate(anyString()))
-                .thenReturn(ValidationResult(true, "User Story - OK"))
+                .thenReturn(ValidationResult(true, Severity.SUCCESS, "User Story - OK"))
 
         whenever(acceptanceCriteriaValidator.validate(anyString()))
-                .thenReturn(ValidationResult(false, "No Acceptance Criteria"))
+                .thenReturn(ValidationResult(false, Severity.ERROR, "No Acceptance Criteria"))
 
         val result = validatorService.validate("mocked validators")
         assertFalse(result.isValid)
         assertEquals(2, result.messages.size)
+        assertEquals(2, result.severities.size)
         assertEquals("User Story - OK", result.messages[0])
         assertEquals("No Acceptance Criteria", result.messages[1])
+        assertEquals(Severity.SUCCESS, result.severities[0])
+        assertEquals(Severity.ERROR, result.severities[1])
+    }
+
+
+    @Test
+    fun `When there no benefits and is valid expect isValid to be true and Severity to be WARNING `() {
+
+        whenever(userStoryValidator.validate(anyString()))
+                .thenReturn(ValidationResult(true, Severity.WARNING, "No Benefits - WARNING"))
+
+        whenever(acceptanceCriteriaValidator.validate(anyString()))
+                .thenReturn(ValidationResult(true, Severity.SUCCESS, "Acceptance Criteria - OK"))
+
+        val result = validatorService.validate("mocked validators")
+        assertTrue(result.isValid)
+        assertEquals(2, result.messages.size)
+        assertEquals(2, result.severities.size)
+        assertEquals("No Benefits - WARNING", result.messages[0])
+        assertEquals("Acceptance Criteria - OK", result.messages[1])
+        assertEquals(Severity.WARNING, result.severities[0])
+        assertEquals(Severity.SUCCESS, result.severities[1])
     }
 
 
