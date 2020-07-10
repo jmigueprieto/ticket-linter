@@ -67,7 +67,7 @@
     </div>
     <div th:if="${!validation.valid}" class="result rerror">
         <i class="fas fa-exclamation-circle fa-2x" style="color:#de8585;"></i>
-        <div>The following issues where found.</div>
+        <div>The following issues were found.</div>
     </div>
     <div style="margin-top:1rem">
         <ul th:each="message, stat: ${validation.messages}">
