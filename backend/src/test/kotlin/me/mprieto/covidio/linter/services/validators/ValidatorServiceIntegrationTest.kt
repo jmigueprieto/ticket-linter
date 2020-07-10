@@ -63,10 +63,8 @@ class ValidatorServiceIntegrationTest {
         assertEquals(Severity.ERROR, result.severities[1])
     }
 
-
     @Test
-    fun `When there no benefits and is valid expect isValid to be true and Severity to be WARNING `() {
-
+    fun `when there no benefits and is valid expect isValid to be true and Severity to be WARNING`() {
         whenever(userStoryValidator.validate(anyString()))
                 .thenReturn(ValidationResult(true, Severity.WARNING, "No Benefits - WARNING"))
 
@@ -82,6 +80,5 @@ class ValidatorServiceIntegrationTest {
         assertEquals(Severity.WARNING, result.severities[0])
         assertEquals(Severity.SUCCESS, result.severities[1])
     }
-
 
 }

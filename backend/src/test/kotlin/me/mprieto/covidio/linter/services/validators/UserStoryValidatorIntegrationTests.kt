@@ -24,9 +24,9 @@ class UserStoryValidatorIntegrationTests {
                 "User has the option to trigger a full project analysis (all tickets are evaluated)."
         val result = validator.validate(text)
         assertTrue(result.isValid)
-        assertEquals(Severity.SUCCESS, result.severities[0])
-        assertEquals(1, result.severities.size)
         assertTrue(result.messages.isEmpty())
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.SUCCESS, result.severities[0])
     }
 
     @Test
@@ -35,9 +35,9 @@ class UserStoryValidatorIntegrationTests {
         val result = validator.validate(text)
         assertTrue(result.isValid)
         assertFalse(result.messages.isEmpty())
-        assertEquals(Severity.WARNING, result.severities[0])
-        assertEquals(1, result.severities.size)
         assertEquals("OK, but Benefit is missing.", result.messages[0])
+        assertEquals(1, result.severities.size)
+        assertEquals(Severity.WARNING, result.severities[0])
     }
 
     @Test
@@ -46,8 +46,8 @@ class UserStoryValidatorIntegrationTests {
         val result = validator.validate(text)
         assertFalse(result.isValid)
         assertEquals(1, result.messages.size)
-        assertEquals(1, result.severities.size)
         assertEquals("Doesn't seem to contain a properly written User Story.", result.messages[0])
+        assertEquals(1, result.severities.size)
         assertEquals(Severity.ERROR, result.severities[0])
     }
 }
