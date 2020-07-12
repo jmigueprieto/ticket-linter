@@ -2,18 +2,17 @@
 
 [![Build Status](https://travis-ci.com/jmigueprieto/ticket-linter.svg?branch=master)](https://travis-ci.com/jmigueprieto/ticket-linter)
 
-"Story Linter" is a Jira Cloud application built with Atlassian Connect. Checkout [this
-video](https://www.youtube.com/watch?v=qzxVBjV5g60) for a quick intro on Atlassian Connect Framework.
+**Story Linter** is a Jira Cloud application built with Atlassian Connect (checkout [this
+video](https://www.youtube.com/watch?v=qzxVBjV5g60) for a quick intro on Atlassian Connect)
 
 As a [linter](https://en.wikipedia.org/wiki/Lint_(software))
 analyzes source code to identify and report issues, like potential bugs, stylistic errors and suspicious constructs,
-this Jira add-on will analyze your user stories and show warnings or alerts if any story does not follow (an opinionated)
-set of rules or format.
+this Jira add-on will analyze your user stories and show warnings or alerts if any story does not follow a
+set of rules.
 
 
-
-
-**_WORK IN PROGRESS..._**
+This is a **_WORK IN PROGRESS._** The app is not yet public in the Atlassian Marketplace. But, we are looking for feedback,
+so if you want to test it and share your experience with us, please [email me](mailto:hello@mprieto.mee).
 
 ### Screenshots
 
