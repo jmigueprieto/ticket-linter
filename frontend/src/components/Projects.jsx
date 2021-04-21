@@ -15,11 +15,17 @@ export default ({ loading, projects, onEvaluate }) => {
 
 function getRows(projects, onEvaluate) {
   return projects.map((project, index) => {
+    let lastUpdate = new Date(project.lastUpdate);
+    if(lastUpdate instanceof Date && !isNaN(lastUpdate.getTime())) {
+      lastUpdate = lastUpdate.toLocaleString();
+    } else {
+      lastUpdate = 'N/A';
+    }
     return {
       key: `${index}`,
       cells: [
         { content: project.name, key: project.name },
-        { content: project.lastUpdate, key: project.lastUpdate },
+        { content: lastUpdate, key: project.lastUpdate },
         { content: project.total, key: project.total },
         {
           key: `violations-${index}`,
