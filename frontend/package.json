@@ -16,7 +16,7 @@
     "@atlaskit/page": "^11.0.14",
     "@atlaskit/reduced-ui-pack": "^13.0.0",
     "@atlaskit/theme": "^9.5.5",
-    "gatsby": "^2.23.3",
+    "gatsby": "^4.25.7",
     "gatsby-image": "^2.4.7",
     "gatsby-plugin-load-script": "^1.1.0",
     "gatsby-plugin-manifest": "^2.4.11",
